@@ -1,8 +1,9 @@
 import click
 import logging
-from package_checker.checker import PackageChecker
+from pybersec.checker import PackageChecker
 from datetime import datetime
 import os
+import asyncio
 
 
 @click.command()
@@ -14,6 +15,10 @@ import os
 )
 def main(package_name, json, debug, report):
     """Check Python package information and metrics"""
+    return asyncio.run(_async_main(package_name, json, debug, report))
+
+
+async def _async_main(package_name, json, debug, report):
     # Setup console logging
     log_level = logging.DEBUG if debug else logging.WARNING
     logging.getLogger().setLevel(log_level)
@@ -26,7 +31,7 @@ def main(package_name, json, debug, report):
     checker = PackageChecker(package_name)
 
     pypi_info = checker.check_pypi_info()
-    security_info = checker.check_security()
+    security_info = await checker.check_security()
     github_metrics = None
 
     if pypi_info and pypi_info["github_url"]:
