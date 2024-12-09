@@ -119,3 +119,8 @@ pybersec-check
 ## License
 
 MIT
+
+
+## Acknowledgements
+
+This idea started with the video: Russ Cox at ACM SCORED: Open Source Supply Chain Security at Google [YouTube Video](https://www.youtube.com/watch?v=6H-V-0oQvCA)
