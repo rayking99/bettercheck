@@ -133,3 +133,7 @@ This is only a research tool.
 This idea started with the video: Russ Cox at ACM SCORED: Open Source Supply Chain Security at Google [YouTube Video](https://www.youtube.com/watch?v=6H-V-0oQvCA)
 
 Claude, Gemini, Llama and o1 all made contributions with the scope, code and understanding. 
+
+## TODO
+
+Recursive check to encompass entire supply-chain + visualisations. 
