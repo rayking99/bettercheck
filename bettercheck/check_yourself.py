@@ -6,13 +6,17 @@ from datetime import datetime
 from typing import List, Dict
 import click
 from bettercheck.checker import PackageChecker
+from bettercheck.security import validate_package_name, SecurityError, read_file_chunked
 
 
 def get_dependencies() -> List[str]:
     """Extract dependencies from Setup.py"""
     setup_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Setup.py")
-    with open(setup_path, "r") as f:
-        content = f.read()
+    try:
+        content = read_file_chunked(setup_path)
+    except SecurityError as e:
+        click.echo(f"Error reading Setup.py: {str(e)}")
+        return []
 
     # Extract install_requires list
     start = content.find("install_requires=[") + len("install_requires=[")
@@ -33,6 +37,12 @@ async def analyze_dependencies(dependencies: List[str]) -> Dict:
     results = {}
 
     for dep in dependencies:
+        try:
+            validate_package_name(dep)
+        except SecurityError as e:
+            click.echo(f"Warning: Skipping invalid package {dep}: {str(e)}")
+            continue
+
         click.echo(f"\nAnalyzing {dep}...")
         checker = PackageChecker(dep)
 
@@ -96,8 +106,13 @@ def save_results(results: Dict):
     filename = f"bettercheck-{timestamp}.json"
     filepath = os.path.join(report_dir, filename)
 
-    with open(filepath, "w") as f:
-        json.dump(results, f, indent=2, default=str)
+    try:
+        with open(filepath, "w", encoding="utf-8") as f:
+            # Write JSON in chunks
+            for chunk in json.JSONEncoder(indent=2, default=str).iterencode(results):
+                f.write(chunk)
+    except Exception as e:
+        click.echo(f"Error saving results: {str(e)}")
 
     click.echo(f"\nReport saved to: {filepath}")
 

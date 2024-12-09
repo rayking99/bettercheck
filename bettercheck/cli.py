@@ -4,6 +4,14 @@ from bettercheck.checker import PackageChecker
 from datetime import datetime
 import os
 import asyncio
+from pathlib import Path
+from bettercheck.report_utils import get_report_path
+from bettercheck.security import (
+    SanitizedFormatter,
+    validate_package_name,
+    SecurityError,
+    read_file_chunked,
+)
 
 
 @click.command()
@@ -19,12 +27,18 @@ def main(package_name, json, debug, report):
 
 
 async def _async_main(package_name, json, debug, report):
+    try:
+        validate_package_name(package_name)
+    except SecurityError as e:
+        click.echo(f"Error: {str(e)}", err=True)
+        return
+
     # Setup console logging
     log_level = logging.DEBUG if debug else logging.WARNING
     logging.getLogger().setLevel(log_level)
     console_handler = logging.StreamHandler()
     console_handler.setLevel(log_level)
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    formatter = SanitizedFormatter("%(asctime)s - %(levelname)s - %(message)s")
     console_handler.setFormatter(formatter)
     logging.getLogger().addHandler(console_handler)
 
@@ -186,11 +200,7 @@ def _print_formatted_results(pypi_info, security_info, github_metrics):
 def generate_report(package_name, pypi_info, security_info, github_metrics, format):
     """Generate a detailed report in the specified format"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    report_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reports")
-    os.makedirs(report_dir, exist_ok=True)
-
-    filename = f"package_report_{package_name}_{timestamp}.{format}"
-    filepath = os.path.join(report_dir, filename)
+    filepath = get_report_path(package_name, timestamp, format)
 
     content = []
     if format == "md":
@@ -258,8 +268,15 @@ def generate_report(package_name, pypi_info, security_info, github_metrics, form
                 content.append(f"- {vuln['vulnerability_id']}: {vuln['advisory']}")
             content.append("")
 
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write("\n".join(content))
+    # Write content in chunks
+    try:
+        with open(filepath, "w", encoding="utf-8") as f:
+            for line in content:
+                f.write(line + "\n")
+                f.flush()  # Ensure each line is written immediately
+    except Exception as e:
+        click.echo(f"Error generating report: {str(e)}")
+        return
 
     click.echo(f"Report generated: {filepath}")
 

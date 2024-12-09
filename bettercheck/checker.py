@@ -8,10 +8,22 @@ import os
 from datetime import datetime
 import aiohttp
 import asyncio
+from bettercheck.report_utils import get_log_path
+from bettercheck.security import (
+    validate_json_response,
+    PYPI_SCHEMA,
+    OSV_SCHEMA,
+    NVD_SCHEMA,
+    SecurityError,
+    SanitizedFormatter,
+    validate_package_name,
+)
 
 
 class PackageChecker:
     def __init__(self, package_name):
+        # Validate package name before using it
+        validate_package_name(package_name)
         self.package_name = package_name
         self.pypi_api = f"https://pypi.org/pypi/{package_name}/json"
         self.github = Github()
@@ -24,24 +36,26 @@ class PackageChecker:
         os.makedirs(log_dir, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = os.path.join(
-            log_dir, f"package_check_{package_name}_{timestamp}.log"
-        )
+        log_file = get_log_path(package_name, timestamp)
 
         self.logger = logging.getLogger(f"package_checker_{package_name}")
         self.logger.setLevel(logging.INFO)
 
-        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        formatter = SanitizedFormatter("%(asctime)s - %(levelname)s - %(message)s")
         file_handler = logging.FileHandler(log_file)
         file_handler.setFormatter(formatter)
         self.logger.addHandler(file_handler)
 
     def check_pypi_info(self):
         self.logger.info(f"Checking PyPI information for package: {self.package_name}")
-        response = requests.get(self.pypi_api)
-        self.logger.debug(f"PyPI API Response: {response.text}")
-        if response.status_code == 200:
+        try:
+            response = requests.get(self.pypi_api)
+            response.raise_for_status()
             data = response.json()
+
+            # Validate response format
+            validate_json_response(data, PYPI_SCHEMA, "PyPI")
+
             result = {
                 "name": data["info"]["name"],
                 "version": data["info"]["version"],
@@ -51,10 +65,12 @@ class PackageChecker:
             }
             self.logger.info(f"PyPI info retrieved successfully: {result}")
             return result
-        self.logger.error(
-            f"Failed to retrieve PyPI info. Status code: {response.status_code}"
-        )
-        return None
+        except SecurityError as e:
+            self.logger.error(f"Security validation failed: {str(e)}")
+            return None
+        except Exception as e:
+            self.logger.error(f"Failed to retrieve PyPI info: {str(e)}")
+            return None
 
     async def _get_osv_details(self, vuln_id):
         """Fetch detailed information for an OSV vulnerability asynchronously."""
@@ -84,13 +100,14 @@ class PackageChecker:
 
         # Create aiohttp session
         async with aiohttp.ClientSession() as self.session:
-            # Check OSV database
             try:
+                # Check OSV database
                 self.logger.info("Querying OSV database...")
                 query = {"package": {"name": self.package_name, "ecosystem": "PyPI"}}
                 async with self.session.post(self.osv_api, json=query) as response:
                     if response.status == 200:
                         data = await response.json()
+                        validate_json_response(data, OSV_SCHEMA, "OSV")
                         if "vulns" in data:
                             # Create tasks for concurrent detail fetching
                             detail_tasks = [
@@ -133,6 +150,9 @@ class PackageChecker:
                                         ),
                                     }
                                 )
+            except SecurityError as e:
+                self.logger.error(f"Security validation failed: {str(e)}")
+                return []
             except Exception as e:
                 self.logger.error(f"OSV security check failed: {str(e)}", exc_info=True)
 
@@ -217,6 +237,7 @@ class PackageChecker:
             async with self.session.get(self.nvd_api, params=params) as response:
                 if response.status == 200:
                     data = await response.json()
+                    validate_json_response(data, NVD_SCHEMA, "NVD")
                     vulnerabilities = []
 
                     for vuln in data.get("vulnerabilities", []):
@@ -245,6 +266,9 @@ class PackageChecker:
                         f"NVD API returned status code: {response.status}"
                     )
                     return []
+        except SecurityError as e:
+            self.logger.error(f"Security validation failed: {str(e)}")
+            return []
         except Exception as e:
             self.logger.error(f"Error during CVE check: {str(e)}", exc_info=True)
             return []
