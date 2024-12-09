@@ -1,4 +1,4 @@
-# PYBERSEC
+# BETTERCHECK
 
 Better than nothing.
 
@@ -6,9 +6,9 @@ Better than nothing.
 
 A CLI tool that helps evaluate Python packages for security concerns before installing them. Performs checks against multiple vulnerability databases and provides useful metrics about package health.
 
-### Pybersec Analysis of Pybersec
+### bettercheck Analysis of bettercheck
 ```sh
-(.venv) ... % pybersec-check
+(.venv) ... % bettercheck-yourself
 
 Analyzing requests...
 
@@ -20,7 +20,7 @@ Analyzing pygithub...
 
 Analyzing pypistats...
 
-Report saved to: PyberSec/reports/pybersec-20241209_194700.json
+Report saved to: bettercheck/reports/bettercheck-20241209_194700.json
 
 === Dependencies Security Analysis ===
 
@@ -76,17 +76,16 @@ Monthly downloads: 25,492
 No known vulnerabilities
 GitHub stars: 200
 Last update: 2024-12-08 11:29:21+00:00
+
+Full report at p
 ```
-
-
 
 ## Installation
 
 
-
 ```bash
-git clone https://github.com/rayking99/PyberSec
-cd PyberSec
+git clone https://github.com/rayking99/bettercheck
+cd bettercheck
 pip install -e .
 ```
 
@@ -94,17 +93,17 @@ pip install -e .
 
 Check a single package:
 ```bash
-pybersec requests
+bettercheck requests
 ```
 
 Generate a report:
 ```bash
-pybersec requests --report md
+bettercheck requests --report md
 ```
 
-Check-yourself. 
+Practice what you preach. 
 ```bash
-pybersec-check
+bettercheck-yourself
 ```
 
 ## Features

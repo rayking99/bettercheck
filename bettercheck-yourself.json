@@ -1,0 +1,659 @@
+{
+  "requests": {
+    "pypi": {
+      "name": "requests",
+      "version": "2.32.3",
+      "downloads": {
+        "last_month": 571358961,
+        "last_week": 138379271
+      },
+      "github_url": "https://github.com/psf/requests",
+      "license": "Apache-2.0"
+    },
+    "security": [
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-652x-xj99-gmcc",
+        "advisory": "Requests (aka python-requests) before 2.3.0 allows remote servers to obtain sensitive information by reading the Proxy-Authorization header in a redirected request.",
+        "published": "2022-05-14T02:09:22Z",
+        "modified": "2024-10-21T22:22:54.104555Z",
+        "aliases": [
+          "CVE-2014-1830",
+          "PYSEC-2014-14"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2014-1830"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/kennethreitz/requests/issues/1885"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/issues/1885"
+          },
+          {
+            "type": "WEB",
+            "url": "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=733108"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/psf/requests"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/requests/PYSEC-2014-14.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://web.archive.org/web/20150523055216/http://www.mandriva.com/en/support/security/advisories/advisory/MDVSA-2015:133/?name=MDVSA-2015:133"
+          },
+          {
+            "type": "WEB",
+            "url": "http://advisories.mageia.org/MGASA-2014-0409.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://lists.opensuse.org/opensuse-updates/2016-01/msg00095.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.debian.org/security/2015/dsa-3146"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.mandriva.com/security/advisories?name=MDVSA-2015:133"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-9wx4-h78v-vm56",
+        "advisory": "When making requests through a Requests `Session`, if the first request is made with `verify=False` to disable cert verification, all subsequent requests to the same origin will continue to ignore cert verification regardless of changes to the value of `verify`. This behavior will continue for the lifecycle of the connection in the connection pool.\n\n### Remediation\nAny of these options can be used to remediate the current issue, we highly recommend upgrading as the preferred mitigation.\n\n* Upgrade to `requests>=2.32.0`.\n* For `requests<2.32.0`, avoid setting `verify=False` for the first request to a host while using a Requests Session.\n* For `requests<2.32.0`, call `close()` on `Session` objects to clear existing connections if `verify=False` is used.\n\n### Related Links\n* https://github.com/psf/requests/pull/6655",
+        "published": "2024-05-20T20:15:00Z",
+        "modified": "2024-07-15T22:12:27.987373Z",
+        "aliases": [
+          "CVE-2024-35195"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/security/advisories/GHSA-9wx4-h78v-vm56"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-35195"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/pull/6655"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/commit/a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/psf/requests"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/IYLSNK5TL46Q6XPRVMHVWS63MVJQOK4Q"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/N7WP6EYDSUOCOJYHDK5NX43PYZ4SNHGZ"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-cfj3-7x9c-4p3h",
+        "advisory": "Requests (aka python-requests) before 2.3.0 allows remote servers to obtain a netrc password by reading the Authorization header in a redirected request.",
+        "published": "2022-05-17T03:49:35Z",
+        "modified": "2024-10-26T22:51:23.384075Z",
+        "aliases": [
+          "CVE-2014-1829",
+          "PYSEC-2014-13"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2014-1829"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/kennethreitz/requests/issues/1885"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/issues/1885"
+          },
+          {
+            "type": "WEB",
+            "url": "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=733108"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/advisories/GHSA-cfj3-7x9c-4p3h"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/psf/requests"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/requests/PYSEC-2014-13.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://web.archive.org/web/20150523055216/http://www.mandriva.com/en/support/security/advisories/advisory/MDVSA-2015:133/?name=MDVSA-2015:133"
+          },
+          {
+            "type": "WEB",
+            "url": "http://advisories.mageia.org/MGASA-2014-0409.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.debian.org/security/2015/dsa-3146"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.mandriva.com/security/advisories?name=MDVSA-2015:133"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.ubuntu.com/usn/USN-2382-1"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-j8r2-6x86-q33q",
+        "advisory": "### Impact\n\nSince Requests v2.3.0, Requests has been vulnerable to potentially leaking `Proxy-Authorization` headers to destination servers, specifically during redirects to an HTTPS origin. This is a product of how `rebuild_proxies` is used to recompute and [reattach the `Proxy-Authorization` header](https://github.com/psf/requests/blob/f2629e9e3c7ce3c3c8c025bcd8db551101cbc773/requests/sessions.py#L319-L328) to requests when redirected. Note this behavior has _only_ been observed to affect proxied requests when credentials are supplied in the URL user information component (e.g. `https://username:password@proxy:8080`).\n\n**Current vulnerable behavior(s):**\n\n1. HTTP \u2192 HTTPS: **leak**\n2. HTTPS \u2192 HTTP: **no leak**\n3. HTTPS \u2192 HTTPS: **leak**\n4. HTTP \u2192 HTTP: **no leak**\n\nFor HTTP connections sent through the proxy, the proxy will identify the header in the request itself and remove it prior to forwarding to the destination server. However when sent over HTTPS, the `Proxy-Authorization` header must be sent in the CONNECT request as the proxy has no visibility into further tunneled requests. This results in Requests forwarding the header to the destination server unintentionally, allowing a malicious actor to potentially exfiltrate those credentials.\n\nThe reason this currently works for HTTPS connections in Requests is the `Proxy-Authorization` header is also handled by urllib3 with our usage of the ProxyManager in adapters.py with [`proxy_manager_for`](https://github.com/psf/requests/blob/f2629e9e3c7ce3c3c8c025bcd8db551101cbc773/requests/adapters.py#L199-L235). This will compute the required proxy headers in `proxy_headers` and pass them to the Proxy Manager, avoiding attaching them directly to the Request object. This will be our preferred option going forward for default usage.\n\n### Patches\nStarting in Requests v2.31.0, Requests will no longer attach this header to redirects with an HTTPS destination. This should have no negative impacts on the default behavior of the library as the proxy credentials are already properly being handled by urllib3's ProxyManager.\n\nFor users with custom adapters, this _may_ be potentially breaking if you were already working around this behavior. The previous functionality of `rebuild_proxies` doesn't make sense in any case, so we would encourage any users impacted to migrate any handling of Proxy-Authorization directly into their custom adapter.\n\n### Workarounds\nFor users who are not able to update Requests immediately, there is one potential workaround.\n\nYou may disable redirects by setting `allow_redirects` to `False` on all calls through Requests top-level APIs. Note that if you're currently relying on redirect behaviors, you will need to capture the 3xx response codes and ensure a new request is made to the redirect destination.\n```\nimport requests\nr = requests.get('http://github.com/', allow_redirects=False)\n```\n\n### Credits\n\nThis vulnerability was discovered and disclosed by the following individuals.\n\nDennis Brinkrolf, Haxolot (https://haxolot.com/)\nTobias Funke, (tobiasfunke93@gmail.com)",
+        "published": "2023-05-22T20:36:32Z",
+        "modified": "2024-03-12T17:19:15.439081Z",
+        "aliases": [
+          "CVE-2023-32681",
+          "PYSEC-2023-74"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-32681"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/psf/requests"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/releases/tag/v2.31.0"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/requests/PYSEC-2023-74.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.debian.org/debian-lts-announce/2023/06/msg00018.html"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AW7HNFGYP44RT3DUDQXG2QT3OEV2PJ7Y"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KOYASTZDGQG2BWLSNBPL3TQRL2G7QYNZ"
+          },
+          {
+            "type": "WEB",
+            "url": "https://security.gentoo.org/glsa/202309-08"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-pg2w-x9wp-vw92",
+        "advisory": "The `resolve_redirects` function in sessions.py in requests 2.1.0 through 2.5.3 allows remote attackers to conduct session fixation attacks via a cookie without a host value in a redirect.",
+        "published": "2022-05-13T01:11:23Z",
+        "modified": "2024-12-01T05:57:02.796059Z",
+        "aliases": [
+          "CVE-2015-2296",
+          "PYSEC-2015-17"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2015-2296"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/kennethreitz/requests/commit/3bd8afbff29e50b38f889b2f688785a669b9aafc"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/commit/3bd8afbff29e50b38f889b2f688785a669b9aafc"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/psf/requests"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/requests/PYSEC-2015-17.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://warehouse.python.org/project/requests/2.6.0"
+          },
+          {
+            "type": "WEB",
+            "url": "http://advisories.mageia.org/MGASA-2015-0120.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://lists.fedoraproject.org/pipermail/package-announce/2015-March/153594.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.mandriva.com/security/advisories?name=MDVSA-2015:133"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.openwall.com/lists/oss-security/2015/03/14/4"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.openwall.com/lists/oss-security/2015/03/15/1"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.ubuntu.com/usn/USN-2531-1"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-x84v-xcm2-53pg",
+        "advisory": "The Requests package through 2.19.1 before 2018-09-14 for Python sends an HTTP Authorization header to an http URI upon receiving a same-hostname https-to-http redirect, which makes it easier for remote attackers to discover credentials by sniffing the network.",
+        "published": "2018-10-29T19:06:46Z",
+        "modified": "2024-10-21T21:42:55.896669Z",
+        "aliases": [
+          "CVE-2018-18074",
+          "PYSEC-2018-28"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-18074"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/requests/requests/issues/4716"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/requests/requests/pull/4718"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff"
+          },
+          {
+            "type": "WEB",
+            "url": "https://access.redhat.com/errata/RHSA-2019:2035"
+          },
+          {
+            "type": "WEB",
+            "url": "https://bugs.debian.org/910766"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/requests/PYSEC-2018-28.yaml"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/requests/requests"
+          },
+          {
+            "type": "WEB",
+            "url": "https://usn.ubuntu.com/3790-1"
+          },
+          {
+            "type": "WEB",
+            "url": "https://usn.ubuntu.com/3790-2"
+          },
+          {
+            "type": "WEB",
+            "url": "https://www.oracle.com/security-alerts/cpujul2022.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://docs.python-requests.org/en/master/community/updates/#release-and-version-history"
+          },
+          {
+            "type": "WEB",
+            "url": "http://lists.opensuse.org/opensuse-security-announce/2019-07/msg00024.html"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2014-13",
+        "advisory": "Requests (aka python-requests) before 2.3.0 allows remote servers to obtain a netrc password by reading the Authorization header in a redirected request.",
+        "published": "2014-10-15T14:55:00Z",
+        "modified": "2023-11-08T03:57:34.760439Z",
+        "aliases": [
+          "CVE-2014-1829",
+          "GHSA-cfj3-7x9c-4p3h"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=733108"
+          },
+          {
+            "type": "REPORT",
+            "url": "https://github.com/kennethreitz/requests/issues/1885"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.ubuntu.com/usn/USN-2382-1"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.debian.org/security/2015/dsa-3146"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.mandriva.com/security/advisories?name=MDVSA-2015:133"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://advisories.mageia.org/MGASA-2014-0409.html"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/advisories/GHSA-cfj3-7x9c-4p3h"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2014-14",
+        "advisory": "Requests (aka python-requests) before 2.3.0 allows remote servers to obtain sensitive information by reading the Proxy-Authorization header in a redirected request.",
+        "published": "2014-10-15T14:55:00Z",
+        "modified": "2023-11-08T03:57:34.820933Z",
+        "aliases": [
+          "CVE-2014-1830",
+          "GHSA-652x-xj99-gmcc"
+        ],
+        "references": [
+          {
+            "type": "REPORT",
+            "url": "https://github.com/kennethreitz/requests/issues/1885"
+          },
+          {
+            "type": "WEB",
+            "url": "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=733108"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.debian.org/security/2015/dsa-3146"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.mandriva.com/security/advisories?name=MDVSA-2015:133"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://advisories.mageia.org/MGASA-2014-0409.html"
+          },
+          {
+            "type": "WEB",
+            "url": "http://lists.opensuse.org/opensuse-updates/2016-01/msg00095.html"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/advisories/GHSA-652x-xj99-gmcc"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2015-17",
+        "advisory": "The resolve_redirects function in sessions.py in requests 2.1.0 through 2.5.3 allows remote attackers to conduct session fixation attacks via a cookie without a host value in a redirect.",
+        "published": "2015-03-18T16:59:00Z",
+        "modified": "2023-11-08T03:57:51.982387Z",
+        "aliases": [
+          "CVE-2015-2296",
+          "GHSA-pg2w-x9wp-vw92"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "http://www.openwall.com/lists/oss-security/2015/03/15/1"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.ubuntu.com/usn/USN-2531-1"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.openwall.com/lists/oss-security/2015/03/14/4"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/kennethreitz/requests/commit/3bd8afbff29e50b38f889b2f688785a669b9aafc"
+          },
+          {
+            "type": "WEB",
+            "url": "https://warehouse.python.org/project/requests/2.6.0/"
+          },
+          {
+            "type": "WEB",
+            "url": "http://lists.fedoraproject.org/pipermail/package-announce/2015-March/153594.html"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://advisories.mageia.org/MGASA-2015-0120.html"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "http://www.mandriva.com/security/advisories?name=MDVSA-2015:133"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2018-28",
+        "advisory": "The Requests package before 2.20.0 for Python sends an HTTP Authorization header to an http URI upon receiving a same-hostname https-to-http redirect, which makes it easier for remote attackers to discover credentials by sniffing the network.",
+        "published": "2018-10-09T17:29:00Z",
+        "modified": "2023-11-08T04:00:04.815794Z",
+        "aliases": [
+          "CVE-2018-18074",
+          "GHSA-x84v-xcm2-53pg"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/requests/requests/pull/4718"
+          },
+          {
+            "type": "REPORT",
+            "url": "https://github.com/requests/requests/issues/4716"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff"
+          },
+          {
+            "type": "WEB",
+            "url": "https://bugs.debian.org/910766"
+          },
+          {
+            "type": "WEB",
+            "url": "https://usn.ubuntu.com/3790-1/"
+          },
+          {
+            "type": "WEB",
+            "url": "http://docs.python-requests.org/en/master/community/updates/#release-and-version-history"
+          },
+          {
+            "type": "WEB",
+            "url": "https://usn.ubuntu.com/3790-2/"
+          },
+          {
+            "type": "WEB",
+            "url": "http://lists.opensuse.org/opensuse-security-announce/2019-07/msg00024.html"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://access.redhat.com/errata/RHSA-2019:2035"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/advisories/GHSA-x84v-xcm2-53pg"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2023-74",
+        "advisory": "Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to an HTTPS endpoint. This is a product of how we use `rebuild_proxies` to reattach the `Proxy-Authorization` header to requests. For HTTP connections sent through the tunnel, the proxy will identify the header in the request itself and remove it prior to forwarding to the destination server. However when sent over HTTPS, the `Proxy-Authorization` header must be sent in the CONNECT request as the proxy has no visibility into the tunneled request. This results in Requests forwarding proxy credentials to the destination server unintentionally, allowing a malicious actor to potentially exfiltrate sensitive information. This issue has been patched in version 2.31.0.\n\n",
+        "published": "2023-05-26T18:15:00Z",
+        "modified": "2023-11-08T04:12:35.436175Z",
+        "aliases": [
+          "CVE-2023-32681",
+          "GHSA-j8r2-6x86-q33q"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/psf/requests/releases/tag/v2.31.0"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AW7HNFGYP44RT3DUDQXG2QT3OEV2PJ7Y/"
+          }
+        ]
+      }
+    ],
+    "github": {
+      "stars": 52268,
+      "forks": 9341,
+      "open_issues": 254,
+      "last_commit": "2024-11-10 16:18:37+00:00",
+      "created_at": "2011-02-13 18:38:17+00:00",
+      "updated_at": "2024-12-09 08:37:49+00:00",
+      "subscribers_count": 1325,
+      "network_count": 9341,
+      "default_branch": "main"
+    }
+  },
+  "click": {
+    "pypi": {
+      "name": "click",
+      "version": "8.1.7",
+      "downloads": {
+        "last_month": 254831371,
+        "last_week": 59339133
+      },
+      "github_url": null,
+      "license": "BSD-3-Clause"
+    },
+    "security": [],
+    "github": null
+  },
+  "packaging": {
+    "pypi": {
+      "name": "packaging",
+      "version": "24.2",
+      "downloads": {
+        "last_month": 504346332,
+        "last_week": 119607023
+      },
+      "github_url": "https://github.com/pypa/packaging",
+      "license": null
+    },
+    "security": [],
+    "github": {
+      "stars": 627,
+      "forks": 251,
+      "open_issues": 105,
+      "last_commit": "2024-12-01 15:33:46+00:00",
+      "created_at": "2014-05-15 22:49:43+00:00",
+      "updated_at": "2024-12-06 01:31:50+00:00",
+      "subscribers_count": 31,
+      "network_count": 251,
+      "default_branch": "main"
+    }
+  },
+  "pygithub": {
+    "pypi": {
+      "name": "PyGithub",
+      "version": "2.5.0",
+      "downloads": {
+        "last_month": 35119161,
+        "last_week": 8830873
+      },
+      "github_url": "https://github.com/pygithub/pygithub",
+      "license": null
+    },
+    "security": [],
+    "github": {
+      "stars": 7069,
+      "forks": 1792,
+      "open_issues": 354,
+      "last_commit": "2024-12-04 08:56:01+00:00",
+      "created_at": "2012-02-25 12:53:47+00:00",
+      "updated_at": "2024-12-09 08:55:09+00:00",
+      "subscribers_count": 111,
+      "network_count": 1792,
+      "default_branch": "main"
+    }
+  },
+  "pypistats": {
+    "pypi": {
+      "name": "pypistats",
+      "version": "1.7.0",
+      "downloads": {
+        "last_month": 25492,
+        "last_week": 6123
+      },
+      "github_url": "https://github.com/hugovk/pypistats",
+      "license": "MIT"
+    },
+    "security": [],
+    "github": {
+      "stars": 200,
+      "forks": 28,
+      "open_issues": 8,
+      "last_commit": "2024-12-08 11:29:21+00:00",
+      "created_at": "2018-09-22 09:19:12+00:00",
+      "updated_at": "2024-12-08 11:06:57+00:00",
+      "subscribers_count": 5,
+      "network_count": 28,
+      "default_branch": "main"
+    }
+  }
+}

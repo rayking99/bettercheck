@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="pybersec",  # Changed from package_checker
+    name="bettercheck",
     version="0.0.1",
     packages=find_packages(),
     install_requires=[
@@ -13,8 +13,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "pybersec-check=pybersec.check_yourself:main",
-            "pybersec=pybersec.cli:main",
+            "bettercheck-yourself=bettercheck.check_yourself:main",
+            "bettercheck=bettercheck.cli:main",
         ],
     },
 )
