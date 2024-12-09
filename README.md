@@ -77,8 +77,9 @@ No known vulnerabilities
 GitHub stars: 200
 Last update: 2024-12-08 11:29:21+00:00
 
-Full report at p
 ```
+
+Full report: [bettercheck-yourself.json](bettercheck-yourself.json)
 
 ## Installation
 
