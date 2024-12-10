@@ -1,18 +1,20 @@
-import click
-import logging
-from bettercheck.checker import PackageChecker
-from datetime import datetime
-import os
 import asyncio
+import logging
+import os
+from datetime import datetime
 from pathlib import Path
+
+import click
+
+from bettercheck.checker import PackageChecker
+from bettercheck.dep_tree import analyze_deps
 from bettercheck.report_utils import get_report_path
 from bettercheck.security import (
     SanitizedFormatter,
-    validate_package_name,
     SecurityError,
     read_file_chunked,
+    validate_package_name,
 )
-from bettercheck.dep_tree import analyze_deps
 
 
 @click.command()

@@ -1,7 +1,8 @@
-from pathlib import Path
-import jsonschema
 import logging
 import re
+from pathlib import Path
+
+import jsonschema
 
 
 class SecurityError(Exception):
