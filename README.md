@@ -199,10 +199,33 @@ Or more easily:
 ```bash
 # View available commands and options
 bettercheck --help  
+
+# Main security/package analysis command
+bettercheck <package_name> [--json] [--debug] [--report {txt,md}] [--with-deps]
+# For example
 bettercheck pandas --report md --with-deps
-bettercheck-yourself
+
+# Check bettercheck project dependencies
+bettercheck-yourself [--direct-only]
+
+# Analyze dependency tree
+bettercheck-deps <package_name>
 bettercheck-deps pandas 
+
+# Generate company/project report
+bettercheck-report
 ```
+
+
+There is also a single file / directory scanner that looks for common vulnerabilities. Obviously there are some ways to scan this code in a sage environment. 
+
+```bash
+# Security scan for Python files/directories
+bettercheck-scan scan-file <file_path> [-o OUTPUT_DIR]
+bettercheck-scan scan-dir <directory>
+```
+
+
 
 
 ### Potential Extensions
