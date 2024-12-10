@@ -211,9 +211,6 @@ bettercheck-yourself [--direct-only]
 # Analyze dependency tree
 bettercheck-deps <package_name>
 bettercheck-deps pandas 
-
-# Generate company/project report
-bettercheck-report
 ```
 
 
