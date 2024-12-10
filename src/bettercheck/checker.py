@@ -175,19 +175,26 @@ class PackageChecker:
             return None
 
         try:
-            repo = self.github.get_repo(repo_url.replace("https://github.com/", ""))
+            # Clean up repo URL to get owner/repo format
+            repo_path = repo_url.replace("https://github.com/", "").rstrip("/")
+            if not repo_path or "/" not in repo_path:
+                raise ValueError(f"Invalid GitHub repository URL: {repo_url}")
+
+            repo = self.github.get_repo(repo_path)
+
+            # Get the real-time metrics directly from the repo object
             metrics = {
-                "stars": repo.stargazers_count,
-                "forks": repo.forks_count,
-                "open_issues": repo.open_issues_count,
+                "stars": repo.get_stargazers().totalCount,  # Get actual stargazers count
+                "forks": repo.get_forks().totalCount,  # Get actual forks count
+                "open_issues": repo.get_issues(
+                    state="open"
+                ).totalCount,  # Get actual open issues
                 "last_commit": repo.pushed_at,
                 "created_at": repo.created_at,
                 "updated_at": repo.updated_at,
-                "subscribers_count": repo.subscribers_count,
-                "network_count": repo.network_count,
                 "default_branch": repo.default_branch,
             }
-            self.logger.debug(f"Full GitHub Repository Information: {repo.raw_data}")
+
             self.logger.info(f"GitHub metrics retrieved successfully: {metrics}")
             return metrics
         except Exception as e:

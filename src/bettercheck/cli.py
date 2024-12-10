@@ -25,12 +25,15 @@ from bettercheck.security import (
     "--report", type=click.Choice(["txt", "md"]), help="Generate a report file"
 )
 @click.option("--with-deps", is_flag=True, help="Include dependency analysis")
-def main(package_name, json, debug, report, with_deps):
+@click.option("--github-url", help="Direct GitHub repository URL to analyze")
+def main(package_name, json, debug, report, with_deps, github_url):
     """Check Python package information and metrics"""
-    return asyncio.run(_async_main(package_name, json, debug, report, with_deps))
+    return asyncio.run(
+        _async_main(package_name, json, debug, report, with_deps, github_url)
+    )
 
 
-async def _async_main(package_name, json, debug, report, with_deps):
+async def _async_main(package_name, json, debug, report, with_deps, github_url):
     try:
         validate_package_name(package_name)
     except SecurityError as e:
@@ -53,7 +56,10 @@ async def _async_main(package_name, json, debug, report, with_deps):
     github_metrics = None
     deps_info = None
 
-    if pypi_info and pypi_info["github_url"]:
+    # Use provided GitHub URL if available, otherwise use the one from PyPI
+    if github_url:
+        github_metrics = checker.check_github_metrics(github_url)
+    elif pypi_info and pypi_info["github_url"]:
         github_metrics = checker.check_github_metrics(pypi_info["github_url"])
 
     if with_deps:

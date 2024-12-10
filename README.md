@@ -204,6 +204,8 @@ bettercheck --help
 bettercheck <package_name> [--json] [--debug] [--report {txt,md}] [--with-deps]
 # For example
 bettercheck pandas --report md --with-deps
+# Also possible - but with mixed results 
+bettercheck package-name --github-url https://github.com/owner/repo
 
 # Check bettercheck project dependencies
 bettercheck-yourself [--direct-only]
