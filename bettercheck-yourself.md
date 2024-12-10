@@ -1,4 +1,6 @@
-
+```sh
+bettercheck-yourself >> bettercheck-yourself.md
+```
 Analyzing 49 total dependencies...
 
 Analyzing pytablewriter...
@@ -99,7 +101,7 @@ Analyzing tcolorpy...
 
 Analyzing urllib3...
 
-Report saved to: /Users/jso/code/chi/bluey/CyberSec/bettercheck/reports/bettercheck-20241210_203035.json
+Report saved to: ./reports/bettercheck-20241210_203035.json
 
 === Dependencies Security Analysis ===
 
