@@ -19,8 +19,9 @@ setup(
     entry_points={
         "console_scripts": [
             "bettercheck-yourself=bettercheck.check_yourself:main",
-            "bettercheck=bettercheck.cli:main", 
+            "bettercheck=bettercheck.cli:main",
             "bettercheck-deps=bettercheck.dep_tree:main",
+            "bettercheck-report=bettercheck.company_report:main",
         ]
     },
     python_requires=">=3.8",
