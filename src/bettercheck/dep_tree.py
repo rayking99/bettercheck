@@ -1,15 +1,17 @@
 import asyncio
-import aiohttp
-from dataclasses import dataclass
-from typing import List, Set, Dict, Optional
-import click
-from bettercheck.security import validate_package_name
+import json as json_module
 import logging
+import time
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List, Optional, Set
+
+import aiohttp
+import click
 from packaging.requirements import Requirement
 from packaging.version import parse
-import json as json_module
-from pathlib import Path
-import time
+
+from bettercheck.security import validate_package_name
 
 
 @dataclass
