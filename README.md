@@ -177,7 +177,17 @@ pip install -e .
 
 ## Usage
 
-To get the commands automatically, you can run:
+You can call as a command line package:
+```bash
+# View available commands and options
+bettercheck --help  
+bettercheck pandas --report md --with-deps
+bettercheck-yourself
+bettercheck-deps pandas 
+```
+
+
+Or:
 ```bash
 # View available commands and options
 python -m bettercheck --help  
@@ -194,15 +204,6 @@ python -m bettercheck.check_yourself --direct-only
 ```
 
 
-Or more easily: 
-
-```bash
-# View available commands and options
-bettercheck --help  
-bettercheck pandas --report md --with-deps
-bettercheck-yourself
-bettercheck-deps pandas 
-```
 
 
 ## Features

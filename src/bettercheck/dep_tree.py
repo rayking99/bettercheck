@@ -71,6 +71,8 @@ class DependencyAnalyzer:
             return cached
 
         try:
+            if not self.session:
+                await self.init_session()
             url = f"https://pypi.org/pypi/{package_name}/json"
             async with self.session.get(url) as response:
                 if response.status == 200:
@@ -78,28 +80,19 @@ class DependencyAnalyzer:
                     deps = self._extract_deps(data)
                     self._cache_deps(package_name, deps)
                     return deps
-                return None
+            return None
         except Exception as e:
             self.logger.error(f"Error fetching {package_name}: {e}")
             return None
 
     def _extract_deps(self, pypi_data: dict) -> Dict:
         """Extract dependencies from PyPI JSON data"""
-        info = pypi_data["info"]
+        info = pypi_data.get("info", {})
+        name = info.get("name", "")
+        version = info.get("version", "")
         requires = info.get("requires_dist", []) or []
 
-        deps = []
-        for req in requires:
-            try:
-                # Parse requirement string
-                requirement = Requirement(req)
-                # Skip environment markers
-                if requirement.marker is None or requirement.marker.evaluate():
-                    deps.append(requirement.name)
-            except Exception as e:
-                self.logger.warning(f"Could not parse requirement {req}: {e}")
-
-        return {"name": info["name"], "version": info["version"], "dependencies": deps}
+        return {"name": name, "version": version, "requires_dist": requires}
 
     async def build_tree(
         self, package_name: str, max_depth: int = 5, depth: int = 0
@@ -118,11 +111,15 @@ class DependencyAnalyzer:
             return None
 
         requires = []
-        for dep in package_info["dependencies"]:
-            child = await self.build_tree(dep, max_depth, depth + 1)
-            if child:
-                child.parent = package_name
-                requires.append(child)
+        for dep_str in package_info["requires_dist"] or []:
+            try:
+                req = Requirement(dep_str)
+                child = await self.build_tree(req.name, max_depth, depth + 1)
+                if child:
+                    child.parent = package_name
+                    requires.append(child)
+            except Exception as e:
+                self.logger.warning(f"Failed to parse requirement {dep_str}: {e}")
 
         return DependencyNode(
             name=package_info["name"],

@@ -2,25 +2,23 @@ from setuptools import setup, find_packages
 
 setup(
     name="bettercheck",
-    version="0.0.1",
-    package_dir={"": "src"},
+    version="0.1.0",
     packages=find_packages(where="src"),
+    package_dir={"": "src"},
     install_requires=[
         "requests",
         "click",
-        "packaging",
-        "pygithub",
-        "pypistats",
-        "jsonschema",
         "aiohttp",
-        "dataclasses",
-        "setuptools",
+        "PyGithub",
+        "jsonschema",
+        "packaging",
     ],
-    entry_points={
-        "console_scripts": [
-            "bettercheck-yourself=bettercheck.check_yourself:main",
-            "bettercheck=bettercheck.cli:main",
-            "bettercheck-deps=bettercheck.dep_tree:main",
+    extras_require={
+        "dev": [
+            "pytest>=8.2.0",
+            "pytest-asyncio>=0.24.0",
+            "pytest-cov",
+            "pytest-mock",
         ]
     },
 )
