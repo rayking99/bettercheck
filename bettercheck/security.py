@@ -61,18 +61,18 @@ PYPI_SCHEMA = {
     "properties": {
         "info": {
             "type": "object",
-            "required": ["name", "version", "license"],
+            "required": ["name", "version"],  # Remove home_page from required
             "properties": {
                 "name": {"type": "string"},
                 "version": {"type": "string"},
                 "license": {"type": ["string", "null"]},
-                "project_urls": {"type": "object"},
-                "home_page": {"type": "string"},
+                "project_urls": {"type": ["object", "null"]},
+                "home_page": {"type": ["string", "null"]},  # Allow null
+                "description": {"type": ["string", "null"]},
             },
         }
     },
 }
-
 OSV_SCHEMA = {
     "type": "object",
     "properties": {

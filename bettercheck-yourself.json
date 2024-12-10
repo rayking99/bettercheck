@@ -4,8 +4,8 @@
       "name": "requests",
       "version": "2.32.3",
       "downloads": {
-        "last_month": 571358961,
-        "last_week": 138379271
+        "last_month": 580975452,
+        "last_week": 140209875
       },
       "github_url": "https://github.com/psf/requests",
       "license": "Apache-2.0"
@@ -559,14 +559,14 @@
       }
     ],
     "github": {
-      "stars": 52268,
-      "forks": 9341,
+      "stars": 52266,
+      "forks": 9339,
       "open_issues": 254,
       "last_commit": "2024-11-10 16:18:37+00:00",
       "created_at": "2011-02-13 18:38:17+00:00",
-      "updated_at": "2024-12-09 08:37:49+00:00",
+      "updated_at": "2024-12-09 23:09:50+00:00",
       "subscribers_count": 1325,
-      "network_count": 9341,
+      "network_count": 9339,
       "default_branch": "main"
     }
   },
@@ -575,34 +575,44 @@
       "name": "click",
       "version": "8.1.7",
       "downloads": {
-        "last_month": 254831371,
-        "last_week": 59339133
+        "last_month": 259210862,
+        "last_week": 59635466
       },
-      "github_url": null,
+      "github_url": "https://github.com/pallets/click",
       "license": "BSD-3-Clause"
     },
     "security": [],
-    "github": null
+    "github": {
+      "stars": 15848,
+      "forks": 1405,
+      "open_issues": 104,
+      "last_commit": "2024-12-07 20:10:36+00:00",
+      "created_at": "2014-04-24 09:52:19+00:00",
+      "updated_at": "2024-12-09 22:31:22+00:00",
+      "subscribers_count": 186,
+      "network_count": 1405,
+      "default_branch": "main"
+    }
   },
   "packaging": {
     "pypi": {
       "name": "packaging",
       "version": "24.2",
       "downloads": {
-        "last_month": 504346332,
-        "last_week": 119607023
+        "last_month": 513411357,
+        "last_week": 120111986
       },
       "github_url": "https://github.com/pypa/packaging",
       "license": null
     },
     "security": [],
     "github": {
-      "stars": 627,
+      "stars": 628,
       "forks": 251,
-      "open_issues": 105,
+      "open_issues": 104,
       "last_commit": "2024-12-01 15:33:46+00:00",
       "created_at": "2014-05-15 22:49:43+00:00",
-      "updated_at": "2024-12-06 01:31:50+00:00",
+      "updated_at": "2024-12-09 12:08:24+00:00",
       "subscribers_count": 31,
       "network_count": 251,
       "default_branch": "main"
@@ -613,20 +623,20 @@
       "name": "PyGithub",
       "version": "2.5.0",
       "downloads": {
-        "last_month": 35119161,
-        "last_week": 8830873
+        "last_month": 35947481,
+        "last_week": 9010577
       },
       "github_url": "https://github.com/pygithub/pygithub",
       "license": null
     },
     "security": [],
     "github": {
-      "stars": 7069,
+      "stars": 7072,
       "forks": 1792,
       "open_issues": 354,
       "last_commit": "2024-12-04 08:56:01+00:00",
       "created_at": "2012-02-25 12:53:47+00:00",
-      "updated_at": "2024-12-09 08:55:09+00:00",
+      "updated_at": "2024-12-10 02:46:19+00:00",
       "subscribers_count": 111,
       "network_count": 1792,
       "default_branch": "main"
@@ -637,8 +647,8 @@
       "name": "pypistats",
       "version": "1.7.0",
       "downloads": {
-        "last_month": 25492,
-        "last_week": 6123
+        "last_month": 26193,
+        "last_week": 6102
       },
       "github_url": "https://github.com/hugovk/pypistats",
       "license": "MIT"
@@ -647,13 +657,924 @@
     "github": {
       "stars": 200,
       "forks": 28,
-      "open_issues": 8,
+      "open_issues": 9,
       "last_commit": "2024-12-08 11:29:21+00:00",
       "created_at": "2018-09-22 09:19:12+00:00",
       "updated_at": "2024-12-08 11:06:57+00:00",
       "subscribers_count": 5,
       "network_count": 28,
       "default_branch": "main"
+    }
+  },
+  "jsonschema": {
+    "pypi": {
+      "name": "jsonschema",
+      "version": "4.23.0",
+      "downloads": {
+        "last_month": 183583243,
+        "last_week": 43493212
+      },
+      "github_url": "https://github.com/python-jsonschema/jsonschema",
+      "license": "MIT"
+    },
+    "security": [],
+    "github": {
+      "stars": 4643,
+      "forks": 582,
+      "open_issues": 38,
+      "last_commit": "2024-12-09 19:57:02+00:00",
+      "created_at": "2011-12-30 03:37:43+00:00",
+      "updated_at": "2024-12-07 13:39:37+00:00",
+      "subscribers_count": 58,
+      "network_count": 582,
+      "default_branch": "main"
+    }
+  },
+  "aiohttp": {
+    "pypi": {
+      "name": "aiohttp",
+      "version": "3.11.10",
+      "downloads": {
+        "last_month": 209496974,
+        "last_week": 52752300
+      },
+      "github_url": "https://github.com/aio-libs/aiohttp",
+      "license": "Apache-2.0"
+    },
+    "security": [
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-27mf-ghqm-j3j8",
+        "advisory": "### Summary\n\nA memory leak can occur when a request produces a `MatchInfoError`. This was caused by adding an entry to a cache on each request, due to the building of each `MatchInfoError` producing a unique cache entry.\n\n### Impact\n\nIf the user is making use of any middlewares with `aiohttp.web` then it is advisable to upgrade immediately.\n\nAn attacker may be able to exhaust the memory resources of a server by sending a substantial number (100,000s to millions) of such requests.\n\n-----\n\nPatch: https://github.com/aio-libs/aiohttp/commit/bc15db61615079d1b6327ba42c682f758fa96936",
+        "published": "2024-11-18T21:02:17Z",
+        "modified": "2024-11-19T21:00:57.011864Z",
+        "aliases": [
+          "CVE-2024-52303"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-27mf-ghqm-j3j8"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-52303"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/bc15db61615079d1b6327ba42c682f758fa96936"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-45c4-8wx5-qw6w",
+        "advisory": "### Impact\n\naiohttp v3.8.4 and earlier are [bundled with llhttp v6.0.6](https://github.com/aio-libs/aiohttp/blob/v3.8.4/.gitmodules) which is vulnerable to CVE-2023-30589. The vulnerable code is used by aiohttp for its HTTP request parser when available which is the default case when installing from a wheel.\n\nThis vulnerability only affects users of aiohttp as an HTTP server (ie `aiohttp.Application`), you are not affected by this vulnerability if you are using aiohttp as an HTTP client library (ie `aiohttp.ClientSession`).\n\n### Reproducer\n\n```python\nfrom aiohttp import web\n\nasync def example(request: web.Request):\n    headers = dict(request.headers)\n    body = await request.content.read()\n    return web.Response(text=f\"headers: {headers} body: {body}\")\n\napp = web.Application()\napp.add_routes([web.post('/', example)])\nweb.run_app(app)\n```\n\nSending a crafted HTTP request will cause the server to misinterpret one of the HTTP header values leading to HTTP request smuggling.\n\n```console\n$ printf \"POST / HTTP/1.1\\r\\nHost: localhost:8080\\r\\nX-Abc: \\rxTransfer-Encoding: chunked\\r\\n\\r\\n1\\r\\nA\\r\\n0\\r\\n\\r\\n\" \\\n  | nc localhost 8080\n\nExpected output:\n  headers: {'Host': 'localhost:8080', 'X-Abc': '\\rxTransfer-Encoding: chunked'} body: b''\n\nActual output (note that 'Transfer-Encoding: chunked' is an HTTP header now and body is treated differently)\n  headers: {'Host': 'localhost:8080', 'X-Abc': '', 'Transfer-Encoding': 'chunked'} body: b'A'\n```\n\n### Patches\n\nUpgrade to the latest version of aiohttp to resolve this vulnerability. It has been fixed in v3.8.5: [`pip install aiohttp >= 3.8.5`](https://pypi.org/project/aiohttp/3.8.5/)\n\n### Workarounds\n\nIf you aren't able to upgrade you can reinstall aiohttp using `AIOHTTP_NO_EXTENSIONS=1` as an environment variable to disable the llhttp HTTP request parser implementation. The pure Python implementation isn't vulnerable to request smuggling:\n\n```console\n$ python -m pip uninstall --yes aiohttp\n$ AIOHTTP_NO_EXTENSIONS=1 python -m pip install --no-binary=aiohttp --no-cache aiohttp\n```\n\n### References\n\n* https://nvd.nist.gov/vuln/detail/CVE-2023-30589\n* https://hackerone.com/reports/2001873\n",
+        "published": "2023-07-20T14:52:00Z",
+        "modified": "2024-09-03T21:46:08.134663Z",
+        "aliases": [
+          "CVE-2023-37276",
+          "PYSEC-2023-120"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-45c4-8wx5-qw6w"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-37276"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/9337fb3f2ab2b5f38d7e98a194bde6f7e3d16c40"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/9c13a52c21c23dfdb49ed89418d28a5b116d0681"
+          },
+          {
+            "type": "WEB",
+            "url": "https://hackerone.com/reports/2001873"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/blob/v3.8.4/.gitmodules"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2023-120.yaml"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-5h86-8mv2-jq9f",
+        "advisory": "### Summary\nImproperly configuring static resource resolution in aiohttp when used as a web server can result in the unauthorized reading of arbitrary files on the system.\n\n### Details\nWhen using aiohttp as a web server and configuring static routes, it is necessary to specify the root path for static files. Additionally, the option 'follow_symlinks' can be used to determine whether to follow symbolic links outside the static root directory. When 'follow_symlinks' is set to True, there is no validation to check if a given file path is within the root directory.This can lead to directory traversal vulnerabilities, resulting in unauthorized access to arbitrary files on the system, even when symlinks are not present.\n\ni.e. An application is only vulnerable with setup code like:\n```\napp.router.add_routes([\n    web.static(\"/static\", \"static/\", follow_symlinks=True),  # Remove follow_symlinks to avoid the vulnerability\n])\n```\n\n### Impact\nThis is a directory traversal vulnerability with CWE ID 22. When using aiohttp as a web server and enabling static resource resolution with `follow_symlinks` set to True, it can lead to this vulnerability. This vulnerability has been present since the introduction of the `follow_symlinks` parameter.\n\n### Workaround\nEven if upgrading to a patched version of aiohttp, we recommend following these steps regardless.\n\nIf using `follow_symlinks=True` outside of a restricted local development environment, disable the option immediately. This option is NOT needed to follow symlinks which point to a location _within_ the static root directory, it is _only_ intended to allow a symlink to break out of the static directory. Even with this CVE fixed, there is still a substantial risk of misconfiguration when using this option on a server that accepts requests from remote users.\n\nAdditionally, aiohttp has always recommended using a reverse proxy server (such as nginx) to handle static resources and _not_ to use these static resources in aiohttp for production environments. Doing so also protects against this vulnerability, and is why we expect the number of affected users to be very low.\n\n-----\n\nPatch: https://github.com/aio-libs/aiohttp/pull/8079/files",
+        "published": "2024-01-29T22:31:03Z",
+        "modified": "2024-11-26T05:24:40.828112Z",
+        "aliases": [
+          "CVE-2024-23334",
+          "PYSEC-2024-24"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-5h86-8mv2-jq9f"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-23334"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8079"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8079/files"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/1c335944d6a8b1298baf179b7c0b3069f10c514b"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2024-24.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ICUOCFGTB25WUT336BZ4UNYLSZOUVKBD"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XXWVZIVAYWEBHNRIILZVB3R3SDQNNAA7"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-5m98-qgg9-wh84",
+        "advisory": "### Summary\nAn attacker can send a specially crafted POST (multipart/form-data) request. When the aiohttp server processes it, the server will enter an infinite loop and be unable to process any further requests.\n\n### Impact\nAn attacker can stop the application from serving requests after sending a single request.\n\n-------\n\nFor anyone needing to patch older versions of aiohttp, the minimum diff needed to resolve the issue is (located in `_read_chunk_from_length()`):\n\n```diff\ndiff --git a/aiohttp/multipart.py b/aiohttp/multipart.py\nindex 227be605c..71fc2654a 100644\n--- a/aiohttp/multipart.py\n+++ b/aiohttp/multipart.py\n@@ -338,6 +338,8 @@ class BodyPartReader:\n         assert self._length is not None, \"Content-Length required for chunked read\"\n         chunk_size = min(size, self._length - self._read_bytes)\n         chunk = await self._content.read(chunk_size)\n+        if self._content.at_eof():\n+            self._at_eof = True\n         return chunk\n \n     async def _read_chunk_from_stream(self, size: int) -> bytes:\n```\n\nThis does however introduce some very minor issues with handling form data. So, if possible, it would be recommended to also backport the changes in:\nhttps://github.com/aio-libs/aiohttp/commit/cebe526b9c34dc3a3da9140409db63014bc4cf19\nhttps://github.com/aio-libs/aiohttp/commit/7eecdff163ccf029fbb1ddc9de4169d4aaeb6597\nhttps://github.com/aio-libs/aiohttp/commit/f21c6f2ca512a026ce7f0f6c6311f62d6a638866",
+        "published": "2024-05-03T17:29:54Z",
+        "modified": "2024-05-03T18:02:59.170557Z",
+        "aliases": [
+          "CVE-2024-30251"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-5m98-qgg9-wh84"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-30251"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/7eecdff163ccf029fbb1ddc9de4169d4aaeb6597"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/cebe526b9c34dc3a3da9140409db63014bc4cf19"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/f21c6f2ca512a026ce7f0f6c6311f62d6a638866"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "http://www.openwall.com/lists/oss-security/2024/05/02/4"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-7gpw-8wmc-pm8g",
+        "advisory": "### Summary\n\nA XSS vulnerability exists on index pages for static file handling.\n\n### Details\n\nWhen using `web.static(..., show_index=True)`, the resulting index pages do not escape file names.\n\nIf users can upload files with arbitrary filenames to the static directory, the server is vulnerable to XSS attacks.\n\n### Workaround\n\nWe have always recommended using a reverse proxy server (e.g. nginx) for serving static files. Users following the recommendation are unaffected.\n\nOther users can disable `show_index` if unable to upgrade.\n\n-----\n\nPatch: https://github.com/aio-libs/aiohttp/pull/8319/files",
+        "published": "2024-04-18T13:45:21Z",
+        "modified": "2024-05-02T03:49:07.951042Z",
+        "aliases": [
+          "CVE-2024-27306"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-7gpw-8wmc-pm8g"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-27306"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8319"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8319/files"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/28335525d1eac015a7e7584137678cbb6ff19397"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/2EXRGTN2WG7VZLUZ7WOXU5GQJKCPPHKP"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NWEI6NIHZ3G7DURDZVMRK7ZEFC2BTD3U"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ZIVBMPEY7WWOFMC3CWXFBRQPFECV4SW3"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-8495-4g3g-x7pr",
+        "advisory": "### Summary\nThe Python parser parses newlines in chunk extensions incorrectly which can lead to request smuggling vulnerabilities under certain conditions.\n\n### Impact\nIf a pure Python version of aiohttp is installed (i.e. without the usual C extensions) or `AIOHTTP_NO_EXTENSIONS` is enabled, then an attacker may be able to execute a request smuggling attack to bypass certain firewalls or proxy protections.\n\n-----\n\nPatch: https://github.com/aio-libs/aiohttp/commit/259edc369075de63e6f3a4eaade058c62af0df71",
+        "published": "2024-11-18T21:02:32Z",
+        "modified": "2024-11-30T05:27:01.654079Z",
+        "aliases": [
+          "CVE-2024-52304"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-8495-4g3g-x7pr"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-52304"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/259edc369075de63e6f3a4eaade058c62af0df71"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-8qpw-xqxj-h4r2",
+        "advisory": "### Summary\nSecurity-sensitive parts of the *Python HTTP parser* retained minor differences in allowable character sets, that must trigger error handling to robustly match frame boundaries of proxies in order to protect against injection of additional requests. Additionally, validation could trigger exceptions that were not handled consistently with processing of other malformed input.\n\n### Details\nThese problems are rooted in pattern matching protocol elements, previously improved by PR #3235 and GHSA-gfw2-4jvh-wgfg:\n\n1. The expression `HTTP/(\\d).(\\d)` lacked another backslash to clarify that the separator should be a literal dot, not just *any* Unicode code point (result: `HTTP/(\\d)\\.(\\d)`).\n\n2. The HTTP version was permitting Unicode digits, where only ASCII digits are standards-compliant.\n\n3. Distinct regular expressions for validating HTTP Method and Header field names were used - though both should (at least) apply the common restrictions of rfc9110 `token`.\n\n### PoC\n`GET / HTTP/1\u00f61`\n`GET / HTTP/1.\ud835\udfd9`\n`GET/: HTTP/1.1`\n`Content-Encoding?: chunked`\n\n### Impact\nPrimarily concerns running an aiohttp server without llhttp:\n 1. **behind a proxy**: Being more lenient than internet standards require could, depending on deployment environment, assist in request smuggling.\n 2. **directly accessible** or exposed behind proxies relaying malformed input: the unhandled exception could cause excessive resource consumption on the application server and/or its logging facilities.\n\n-----\n\nPatch: https://github.com/aio-libs/aiohttp/pull/8074/files",
+        "published": "2024-01-29T22:30:07Z",
+        "modified": "2024-09-04T20:05:21.242565Z",
+        "aliases": [
+          "CVE-2024-23829",
+          "PYSEC-2024-26"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-8qpw-xqxj-h4r2"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-gfw2-4jvh-wgfg"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-23829"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/3235"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8074"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8074/files"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/33ccdfb0a12690af5bb49bda2319ec0907fa7827"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2024-26.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/ICUOCFGTB25WUT336BZ4UNYLSZOUVKBD"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XXWVZIVAYWEBHNRIILZVB3R3SDQNNAA7"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-gfw2-4jvh-wgfg",
+        "advisory": "# Summary\nThe HTTP parser in AIOHTTP has numerous problems with header parsing, which could lead to request smuggling.\nThis parser is only used when `AIOHTTP_NO_EXTENSIONS` is enabled (or not using a prebuilt wheel).\n \n# Details\n\n## Bug 1: Bad parsing of `Content-Length` values\n\n### Description\nRFC 9110 says this:\n> `Content-Length = 1*DIGIT`\n\nAIOHTTP does not enforce this rule, presumably because of an incorrect usage of the builtin `int` constructor. Because the `int` constructor accepts `+` and `-` prefixes, and digit-separating underscores, using `int` to parse CL values leads AIOHTTP to significant misinterpretation.\n\n### Examples\n```\nGET / HTTP/1.1\\r\\n\nContent-Length: -0\\r\\n\n\\r\\n\nX\n```\n```\nGET / HTTP/1.1\\r\\n\nContent-Length: +0_1\\r\\n\n\\r\\n\nX\n```\n\n### Suggested action\nVerify that a `Content-Length` value consists only of ASCII digits before parsing, as the standard requires.\n\n## Bug 2: Improper handling of NUL, CR, and LF in header values\n\n### Description\nRFC 9110 says this:\n> Field values containing CR, LF, or NUL characters are invalid and dangerous, due to the varying ways that implementations might parse and interpret those characters; a recipient of CR, LF, or NUL within a field value MUST either reject the message or replace each of those characters with SP before further processing or forwarding of that message.\n\nAIOHTTP's HTTP parser does not enforce this rule, and will happily process header values containing these three forbidden characters without replacing them with SP.\n### Examples\n```\nGET / HTTP/1.1\\r\\n\nHeader: v\\x00alue\\r\\n\n\\r\\n\n```\n```\nGET / HTTP/1.1\\r\\n\nHeader: v\\ralue\\r\\n\n\\r\\n\n```\n```\nGET / HTTP/1.1\\r\\n\nHeader: v\\nalue\\r\\n\n\\r\\n\n```\n### Suggested action\nReject all messages with NUL, CR, or LF in a header value. The translation to space thing, while technically allowed, does not seem like a good idea to me.\n\n## Bug 3: Improper stripping of whitespace before colon in HTTP headers\n\n### Description\nRFC 9112 says this:\n> No whitespace is allowed between the field name and colon. In the past, differences in the handling of such whitespace have led to security vulnerabilities in request routing and response handling. A server MUST reject, with a response status code of 400 (Bad Request), any received request message that contains whitespace between a header field name and colon.\n\nAIOHTTP does not enforce this rule, and will simply strip any whitespace before the colon in an HTTP header.\n\n### Example\n```\nGET / HTTP/1.1\\r\\n\nContent-Length : 1\\r\\n\n\\r\\n\nX\n```\n\n### Suggested action\nReject all messages with whitespace before a colon in a header field, as the standard requires.\n\n# PoC\nExample requests are embedded in the previous section. To reproduce these bugs, start an AIOHTTP server without llhttp (i.e. `AIOHTTP_NO_EXTENSIONS=1`) and send the requests given in the previous section. (e.g. by `printf`ing into `nc`)\n\n# Impact\nEach of these bugs can be used for request smuggling.",
+        "published": "2023-11-14T22:20:59Z",
+        "modified": "2024-09-04T20:20:38.385847Z",
+        "aliases": [
+          "CVE-2023-47627",
+          "PYSEC-2023-246"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-gfw2-4jvh-wgfg"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-47627"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/d5c12ba890557a575c313bb3017910d7616fce3d"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/releases/tag/v3.8.6"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2023-246.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FUSJVQ7OQ55RWL4XAX2F5EZ73N4ZSH6U"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VDKQ6HM3KNDU4OQI476ZWT4O7DMSIT35"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WQYQL6WV535EEKSNH7KRARLLMOW5WXDM"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-jwhx-xcg6-8xhj",
+        "advisory": "### Summary\nStatic routes which contain files with compressed variants (`.gz` or `.br` extension) were vulnerable to path traversal outside the root directory if those variants are symbolic links.\n\n### Details\nThe server protects static routes from path traversal outside the root directory when `follow_symlinks=False` (default).  It does this by resolving the requested URL to an absolute path and then checking that path relative to the root.  However, these checks are not performed when looking for compressed variants in the `FileResponse` class, and symbolic links are then automatically followed when performing `Path.stat()` and `Path.open()` to send the file.\n\n### Impact\nServers with static routes that contain compressed variants as symbolic links, pointing outside the root directory, or that permit users to upload or create such links, are impacted.\n\n----\n\nPatch: https://github.com/aio-libs/aiohttp/pull/8653/files",
+        "published": "2024-08-09T16:49:58Z",
+        "modified": "2024-08-12T16:21:23.021990Z",
+        "aliases": [
+          "CVE-2024-42367"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-jwhx-xcg6-8xhj"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-42367"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8653"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/ce2e9758814527589b10759a20783fb03b98339f"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/blob/e0ff5246e1d29b7710ab1a2bbc972b48169f1c05/aiohttp/web_fileresponse.py#L177"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/blob/e0ff5246e1d29b7710ab1a2bbc972b48169f1c05/aiohttp/web_urldispatcher.py#L674"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-pjjw-qhg8-p2p9",
+        "advisory": "### Summary\nllhttp 8.1.1 is vulnerable to two request smuggling vulnerabilities.\nDetails have not been disclosed yet, so refer to llhttp for future information.\nThe issue is resolved by using llhttp 9+ (which is included in aiohttp 3.8.6+).",
+        "published": "2023-11-27T23:15:38Z",
+        "modified": "2024-12-02T05:36:03.769392Z",
+        "aliases": [],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-pjjw-qhg8-p2p9"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/996de2629ef6b4c2934a7c04dfd49d0950d4c43b"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/bcc416e533796d04fb8124ef1e7686b1f338767a"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-q3qx-c6g2-7pw2",
+        "advisory": "### Summary\nImproper validation make it possible for an attacker to modify the HTTP request (e.g. to insert a new header) or even create a new HTTP request if the attacker controls the HTTP version.\n\n### Details\nThe vulnerability only occurs if the attacker can control the HTTP version of the request (including its type).\nFor example if an unvalidated JSON value is used as a version and the attacker is then able to pass an array as the `version` parameter.\nFurthermore, the vulnerability only occurs when the `Connection` header is passed to the `headers` parameter.\n\nAt this point, the library will use the parsed value to create the request. If a list is passed, then it bypasses validation and it is possible to perform CRLF injection.\n\n### PoC\nThe POC below shows an example of providing an unvalidated array as a version:\nhttps://gist.github.com/jnovikov/184afb593d9c2114d77f508e0ccd508e\n\n### Impact\nCRLF injection leading to Request Smuggling.\n\n### Workaround\nIf these specific conditions are met and you are unable to upgrade, then validate the user input to the `version` parameter to ensure it is a `str`.\n\nPatch: https://github.com/aio-libs/aiohttp/pull/7835/files",
+        "published": "2023-11-27T23:17:42Z",
+        "modified": "2024-09-04T19:10:50.184449Z",
+        "aliases": [
+          "CVE-2023-49081",
+          "PYSEC-2023-250"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-q3qx-c6g2-7pw2"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-49081"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/7835/files"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/1e86b777e61cf4eefc7d92fa57fa19dcc676013b"
+          },
+          {
+            "type": "WEB",
+            "url": "https://gist.github.com/jnovikov/184afb593d9c2114d77f508e0ccd508e"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2023-250.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TY5SI6NK5243DEEDQUFKQKW5GQNKQUMA"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WSYWMP64ZFCTC3VO6RY6EC6VSSMV6I3A"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-qvrw-v9rv-5rjx",
+        "advisory": "### Summary\nImproper validation makes it possible for an attacker to modify the HTTP request (e.g. insert a new header) or even create a new HTTP request if the attacker controls the HTTP method.\n\n### Details\nThe vulnerability occurs only if the attacker can control the HTTP method (GET, POST etc.) of the request.\n\nPrevious releases performed no validation on the provided value. If an attacker controls the HTTP method it will be used as is and can lead to HTTP request smuggling.\n\n### PoC\nA minimal example can be found here:\nhttps://gist.github.com/jnovikov/7f411ae9fe6a9a7804cf162a3bdbb44b\n\n### Impact\nIf the attacker can control the HTTP version of the request it will be able to modify the request (request smuggling).\n\n### Workaround\nIf unable to upgrade and using user-provided values for the request method, perform manual validation of the user value (e.g. by restricting it to a few known values like GET, POST etc.).\n\nPatch: https://github.com/aio-libs/aiohttp/pull/7806/files",
+        "published": "2023-11-27T23:17:24Z",
+        "modified": "2024-09-03T21:46:24.519134Z",
+        "aliases": [
+          "CVE-2023-49082",
+          "PYSEC-2023-251"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-qvrw-v9rv-5rjx"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-49082"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/7806/files"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/e4ae01c2077d2cfa116aa82e4ff6866857f7c466"
+          },
+          {
+            "type": "WEB",
+            "url": "https://gist.github.com/jnovikov/7f411ae9fe6a9a7804cf162a3bdbb44b"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2023-251.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TY5SI6NK5243DEEDQUFKQKW5GQNKQUMA"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/WSYWMP64ZFCTC3VO6RY6EC6VSSMV6I3A"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-v6wp-4m6f-gcjg",
+        "advisory": "### Impact\n\nOpen redirect vulnerability \u2014 a maliciously crafted link to an aiohttp-based web-server could redirect the browser to a different website.\n\nIt is caused by a bug in the `aiohttp.web_middlewares.normalize_path_middleware` middleware.\n\n### Patches\n\nThis security problem has been fixed in v3.7.4. Upgrade your dependency as follows:\n[`pip install aiohttp >= 3.7.4`]\n\n### Workarounds\n\nIf upgrading is not an option for you, a workaround can be to avoid using `aiohttp.web_middlewares.normalize_path_middleware` in your applications.\n\n### References\n\n* [aiohttp @ PyPI]\n* [GHSA-v6wp-4m6f-gcjg]\n* [OWASP page on open redirects]\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n* Open an issue in the [aiohttp repo](https://github.com/aio-libs/aiohttp/issues/new/choose)\n* Email us at wk+aio-libs-security@sydorenko.org.ua and/or andrew.svetlov+aio-libs-security@gmail.com\n\nCredit: [Jelmer Vernoo\u0133] and [Beast Glatisant].\n\n[aiohttp @ PyPI]: https://pypi.org/p/aiohttp\n[`pip install aiohttp >= 3.7.4`]: https://pypi.org/project/aiohttp/3.7.4/\n[GHSA-v6wp-4m6f-gcjg]: https://github.com/aio-libs/aiohttp/security/advisories/GHSA-v6wp-4m6f-gcjg\n[OWASP page on open redirects]:\nhttps://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html\n\n[Jelmer Vernoo\u0133]: https://jelmer.uk\n[Beast Glatisant]: https://github.com/g147",
+        "published": "2021-02-26T02:11:57Z",
+        "modified": "2024-09-03T21:22:45.457235Z",
+        "aliases": [
+          "CVE-2021-21330",
+          "PYSEC-2021-76"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-v6wp-4m6f-gcjg"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-21330"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/2545222a3853e31ace15d87ae0e2effb7da0c96b"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/blob/master/CHANGES.rst#374-2021-02-25"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2021-76.yaml"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/FU7ENI54JNEK3PHEFGCE46DGMFNTVU6L"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JN3V7CZJRT4QFCVXB6LDPCJH7NAOFCA5"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FU7ENI54JNEK3PHEFGCE46DGMFNTVU6L"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JN3V7CZJRT4QFCVXB6LDPCJH7NAOFCA5"
+          },
+          {
+            "type": "WEB",
+            "url": "https://pypi.org/project/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://security.gentoo.org/glsa/202208-19"
+          },
+          {
+            "type": "WEB",
+            "url": "https://www.debian.org/security/2021/dsa-4864"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "GHSA-xx9p-xxvh-7g8j",
+        "advisory": "### Impact\n\nAiohttp has a security vulnerability regarding the inconsistent interpretation of the http protocol. As we know that HTTP/1.1 is persistent, if we have both Content-Length(CL) and Transfer-Encoding(TE) it can lead to incorrect interpretation of two entities that parse the HTTP and we can poison other sockets with this incorrect interpretation.\n\nA possible Proof-of-Concept (POC) would be a configuration with a reverse proxy(frontend) that accepts both CL and TE headers and aiohttp as backend. As aiohttp parses anything with chunked, we can pass a chunked123 as TE, the frontend entity will ignore this header and will parse Content-Length. I can give a Dockerfile with the configuration if you want.\n\nThe impact of this vulnerability is that it is possible to bypass any proxy rule, poisoning sockets to other users like passing Authentication Headers, also if it is present an Open Redirect (just like CVE-2021-21330) we can combine it to redirect random users to our website and log the request.\n\n\n### References\n\n- https://github.com/aio-libs/aiohttp/commit/f016f0680e4ace6742b03a70cb0382ce86abe371",
+        "published": "2023-11-14T20:36:25Z",
+        "modified": "2024-09-04T20:21:56.509197Z",
+        "aliases": [
+          "CVE-2023-47641",
+          "PYSEC-2023-247"
+        ],
+        "references": [
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-xx9p-xxvh-7g8j"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-47641"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/commit/f016f0680e4ace6742b03a70cb0382ce86abe371"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/releases/tag/v3.8.0"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/pypa/advisory-database/tree/main/vulns/aiohttp/PYSEC-2023-247.yaml"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2021-76",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. In aiohttp before version 3.7.4 there is an open redirect vulnerability. A maliciously crafted link to an aiohttp-based web-server could redirect the browser to a different website. It is caused by a bug in the `aiohttp.web_middlewares.normalize_path_middleware` middleware. This security problem has been fixed in 3.7.4. Upgrade your dependency using pip as follows \"pip install aiohttp >= 3.7.4\". If upgrading is not an option for you, a workaround can be to avoid using `aiohttp.web_middlewares.normalize_path_middleware` in your applications.",
+        "published": "2021-02-26T03:15:00Z",
+        "modified": "2023-11-08T04:04:41.517445Z",
+        "aliases": [
+          "CVE-2021-21330",
+          "GHSA-v6wp-4m6f-gcjg"
+        ],
+        "references": [
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/2545222a3853e31ace15d87ae0e2effb7da0c96b"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/blob/master/CHANGES.rst#374-2021-02-25"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://pypi.org/project/aiohttp/"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-v6wp-4m6f-gcjg"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://www.debian.org/security/2021/dsa-4864"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JN3V7CZJRT4QFCVXB6LDPCJH7NAOFCA5/"
+          },
+          {
+            "type": "WEB",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FU7ENI54JNEK3PHEFGCE46DGMFNTVU6L/"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2023-120",
+        "advisory": "### Impact\n\naiohttp v3.8.4 and earlier are [bundled with llhttp v6.0.6](https://github.com/aio-libs/aiohttp/blob/v3.8.4/.gitmodules) which is vulnerable to CVE-2023-30589. The vulnerable code is used by aiohttp for its HTTP request parser when available which is the default case when installing from a wheel.\n\nThis vulnerability only affects users of aiohttp as an HTTP server (ie `aiohttp.Application`), you are not affected by this vulnerability if you are using aiohttp as an HTTP client library (ie `aiohttp.ClientSession`).\n\n### Reproducer\n\n```python\nfrom aiohttp import web\n\nasync def example(request: web.Request):\n    headers = dict(request.headers)\n    body = await request.content.read()\n    return web.Response(text=f\"headers: {headers} body: {body}\")\n\napp = web.Application()\napp.add_routes([web.post('/', example)])\nweb.run_app(app)\n```\n\nSending a crafted HTTP request will cause the server to misinterpret one of the HTTP header values leading to HTTP request smuggling.\n\n```console\n$ printf \"POST / HTTP/1.1\\r\\nHost: localhost:8080\\r\\nX-Abc: \\rxTransfer-Encoding: chunked\\r\\n\\r\\n1\\r\\nA\\r\\n0\\r\\n\\r\\n\" \\\n  | nc localhost 8080\n\nExpected output:\n  headers: {'Host': 'localhost:8080', 'X-Abc': '\\rxTransfer-Encoding: chunked'} body: b''\n\nActual output (note that 'Transfer-Encoding: chunked' is an HTTP header now and body is treated differently)\n  headers: {'Host': 'localhost:8080', 'X-Abc': '', 'Transfer-Encoding': 'chunked'} body: b'A'\n```\n\n### Patches\n\nUpgrade to the latest version of aiohttp to resolve this vulnerability. It has been fixed in v3.8.5: [`pip install aiohttp >= 3.8.5`](https://pypi.org/project/aiohttp/3.8.5/)\n\n### Workarounds\n\nIf you aren't able to upgrade you can reinstall aiohttp using `AIOHTTP_NO_EXTENSIONS=1` as an environment variable to disable the llhttp HTTP request parser implementation. The pure Python implementation isn't vulnerable to request smuggling:\n\n```console\n$ python -m pip uninstall --yes aiohttp\n$ AIOHTTP_NO_EXTENSIONS=1 python -m pip install --no-binary=aiohttp --no-cache aiohttp\n```\n\n### References\n\n* https://nvd.nist.gov/vuln/detail/CVE-2023-30589\n* https://hackerone.com/reports/2001873\n",
+        "published": "2023-07-20T14:52:00Z",
+        "modified": "2023-11-08T04:13:00.855432Z",
+        "aliases": [
+          "CVE-2023-37276",
+          "GHSA-45c4-8wx5-qw6w"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-45c4-8wx5-qw6w"
+          },
+          {
+            "type": "ADVISORY",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-37276"
+          },
+          {
+            "type": "PACKAGE",
+            "url": "https://github.com/aio-libs/aiohttp"
+          },
+          {
+            "type": "WEB",
+            "url": "https://hackerone.com/reports/2001873"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2023-246",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. The HTTP parser in AIOHTTP has numerous problems with header parsing, which could lead to request smuggling. This parser is only used when AIOHTTP_NO_EXTENSIONS is enabled (or not using a prebuilt wheel). These bugs have been addressed in commit `d5c12ba89` which has been included in release version 3.8.6. Users are advised to upgrade. There are no known workarounds for these issues.",
+        "published": "2023-11-14T21:15:00Z",
+        "modified": "2023-11-22T23:41:28.136683Z",
+        "aliases": [
+          "CVE-2023-47627",
+          "GHSA-gfw2-4jvh-wgfg"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-gfw2-4jvh-wgfg"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/d5c12ba890557a575c313bb3017910d7616fce3d"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2023-247",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. Affected versions of aiohttp have a security vulnerability regarding the inconsistent interpretation of the http protocol. HTTP/1.1 is a persistent protocol, if both Content-Length(CL) and Transfer-Encoding(TE) header values are present it can lead to incorrect interpretation of two entities that parse the HTTP and we can poison other sockets with this incorrect interpretation. A possible Proof-of-Concept (POC) would be a configuration with a reverse proxy(frontend) that accepts both CL and TE headers and aiohttp as backend. As aiohttp parses anything with chunked, we can pass a chunked123 as TE, the frontend entity will ignore this header and will parse Content-Length. The impact of this vulnerability is that it is possible to bypass any proxy rule, poisoning sockets to other users like passing Authentication Headers, also if it is present an Open Redirect an attacker could combine it to redirect random users to another website and log the request. This vulnerability has been addressed in release 3.8.0 of aiohttp. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+        "published": "2023-11-14T21:15:00Z",
+        "modified": "2023-11-22T23:41:23.846045Z",
+        "aliases": [
+          "CVE-2023-47641",
+          "GHSA-xx9p-xxvh-7g8j"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-xx9p-xxvh-7g8j"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/f016f0680e4ace6742b03a70cb0382ce86abe371"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2023-250",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. Improper validation made it possible for an attacker to modify the HTTP request (e.g. to insert a new header) or create a new HTTP request if the attacker controls the HTTP version. The vulnerability only occurs if the attacker can control the HTTP version of the request. This issue has been patched in version 3.9.0.",
+        "published": "2023-11-30T07:15:00Z",
+        "modified": "2024-01-29T16:41:42.718733Z",
+        "aliases": [
+          "CVE-2023-49081",
+          "GHSA-q3qx-c6g2-7pw2"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-q3qx-c6g2-7pw2"
+          },
+          {
+            "type": "WEB",
+            "url": "https://gist.github.com/jnovikov/184afb593d9c2114d77f508e0ccd508e"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/7835/files"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/1e86b777e61cf4eefc7d92fa57fa19dcc676013b"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2023-251",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. Improper validation makes it possible for an attacker to modify the HTTP request (e.g. insert a new header) or even create a new HTTP request if the attacker controls the HTTP method. The vulnerability occurs only if the attacker can control the HTTP method (GET, POST etc.) of the request. If the attacker can control the HTTP version of the request it will be able to modify the request (request smuggling). This issue has been patched in version 3.9.0.",
+        "published": "2023-11-29T20:15:00Z",
+        "modified": "2024-01-29T16:41:42.479153Z",
+        "aliases": [
+          "CVE-2023-49082",
+          "GHSA-qvrw-v9rv-5rjx"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-qvrw-v9rv-5rjx"
+          },
+          {
+            "type": "WEB",
+            "url": "https://gist.github.com/jnovikov/7f411ae9fe6a9a7804cf162a3bdbb44b"
+          },
+          {
+            "type": "WEB",
+            "url": "https://github.com/aio-libs/aiohttp/pull/7806/files"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/e4ae01c2077d2cfa116aa82e4ff6866857f7c466"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2024-24",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. When using aiohttp as a web server and configuring static routes, it is necessary to specify the root path for static files. Additionally, the option 'follow_symlinks' can be used to determine whether to follow symbolic links outside the static root directory. When 'follow_symlinks' is set to True, there is no validation to check if reading a file is within the root directory. This can lead to directory traversal vulnerabilities, resulting in unauthorized access to arbitrary files on the system, even when symlinks are not present.  Disabling follow_symlinks and using a reverse proxy are encouraged mitigations.  Version 3.9.2 fixes this issue.",
+        "published": "2024-01-29T23:15:00Z",
+        "modified": "2024-02-05T20:43:19.143053Z",
+        "aliases": [
+          "CVE-2024-23334",
+          "GHSA-5h86-8mv2-jq9f"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-5h86-8mv2-jq9f"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8079"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/1c335944d6a8b1298baf179b7c0b3069f10c514b"
+          },
+          {
+            "type": "ARTICLE",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XXWVZIVAYWEBHNRIILZVB3R3SDQNNAA7/"
+          }
+        ]
+      },
+      {
+        "source": "OSV",
+        "vulnerability_id": "PYSEC-2024-26",
+        "advisory": "aiohttp is an asynchronous HTTP client/server framework for asyncio and Python. Security-sensitive parts of the Python HTTP parser retained minor differences in allowable character sets, that must trigger error handling to robustly match frame boundaries of proxies in order to protect against injection of additional requests. Additionally, validation could trigger exceptions that were not handled consistently with processing of other malformed input.  Being more lenient than internet standards require could, depending on deployment environment, assist in request smuggling. The unhandled exception could cause excessive resource consumption on the application server and/or its logging facilities. This vulnerability exists due to an incomplete fix for CVE-2023-47627. Version 3.9.2 fixes this vulnerability.",
+        "published": "2024-01-29T23:15:00Z",
+        "modified": "2024-02-06T20:41:46.176337Z",
+        "aliases": [
+          "CVE-2024-23829",
+          "GHSA-8qpw-xqxj-h4r2"
+        ],
+        "references": [
+          {
+            "type": "ADVISORY",
+            "url": "https://github.com/aio-libs/aiohttp/security/advisories/GHSA-8qpw-xqxj-h4r2"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/pull/8074"
+          },
+          {
+            "type": "FIX",
+            "url": "https://github.com/aio-libs/aiohttp/commit/33ccdfb0a12690af5bb49bda2319ec0907fa7827"
+          },
+          {
+            "type": "ARTICLE",
+            "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XXWVZIVAYWEBHNRIILZVB3R3SDQNNAA7/"
+          }
+        ]
+      }
+    ],
+    "github": {
+      "stars": 15204,
+      "forks": 2027,
+      "open_issues": 249,
+      "last_commit": "2024-12-09 20:12:28+00:00",
+      "created_at": "2013-10-01 23:04:01+00:00",
+      "updated_at": "2024-12-09 21:13:38+00:00",
+      "subscribers_count": 217,
+      "network_count": 2027,
+      "default_branch": "master"
+    }
+  },
+  "dataclasses": {
+    "pypi": {
+      "name": "dataclasses",
+      "version": "0.8",
+      "downloads": {
+        "last_month": 18805604,
+        "last_week": 3880872
+      },
+      "github_url": "https://github.com/ericvsmith/dataclasses",
+      "license": "Apache"
+    },
+    "security": [],
+    "github": {
+      "stars": 586,
+      "forks": 53,
+      "open_issues": 8,
+      "last_commit": "2024-07-11 16:14:35+00:00",
+      "created_at": "2017-05-19 20:46:27+00:00",
+      "updated_at": "2024-12-08 11:51:48+00:00",
+      "subscribers_count": 12,
+      "network_count": 53,
+      "default_branch": "master"
     }
   }
 }

@@ -8,7 +8,7 @@ A CLI tool that helps evaluate Python packages for security concerns before inst
 
 ### bettercheck Analysis of bettercheck
 ```sh
-(.venv) ... % bettercheck-yourself
+(.venv) % bettercheck-yourself
 
 Analyzing requests...
 
@@ -20,18 +20,24 @@ Analyzing pygithub...
 
 Analyzing pypistats...
 
-Report saved to: bettercheck/reports/bettercheck-20241209_194700.json
+Analyzing jsonschema...
+
+Analyzing aiohttp...
+
+Analyzing dataclasses...
+
+Report saved to: ./reports/bettercheck-20241210_170638.json
 
 === Dependencies Security Analysis ===
 
-Total packages analyzed: 5
-Total vulnerabilities found: 11
+Total packages analyzed: 8
+Total vulnerabilities found: 33
 
 
 requests:
 -------------------
 Version: 2.32.3
-Monthly downloads: 571,358,961
+Monthly downloads: 580,975,452
 Vulnerabilities: 11
 - [OSV] GHSA-652x-xj99-gmcc
 - [OSV] GHSA-9wx4-h78v-vm56
@@ -44,39 +50,118 @@ Vulnerabilities: 11
 - [OSV] PYSEC-2015-17
 - [OSV] PYSEC-2018-28
 - [OSV] PYSEC-2023-74
-GitHub stars: 52,268
-Last update: 2024-11-10 16:18:37+00:00
+
+GitHub Metrics:
+Stars: 52,266
+Forks: 9,339
+Open Issues: 254
+Last Update: 2024-11-10 16:18:37+00:00
 
 click:
 -------------------
 Version: 8.1.7
-Monthly downloads: 254,831,371
+Monthly downloads: 259,210,862
 No known vulnerabilities
+
+GitHub Metrics:
+Stars: 15,848
+Forks: 1,405
+Open Issues: 104
+Last Update: 2024-12-07 20:10:36+00:00
 
 packaging:
 -------------------
 Version: 24.2
-Monthly downloads: 504,346,332
+Monthly downloads: 513,411,357
 No known vulnerabilities
-GitHub stars: 627
-Last update: 2024-12-01 15:33:46+00:00
+
+GitHub Metrics:
+Stars: 628
+Forks: 251
+Open Issues: 104
+Last Update: 2024-12-01 15:33:46+00:00
 
 pygithub:
 -------------------
 Version: 2.5.0
-Monthly downloads: 35,119,161
+Monthly downloads: 35,947,481
 No known vulnerabilities
-GitHub stars: 7,068
-Last update: 2024-12-04 08:56:01+00:00
+
+GitHub Metrics:
+Stars: 7,072
+Forks: 1,792
+Open Issues: 354
+Last Update: 2024-12-04 08:56:01+00:00
 
 pypistats:
 -------------------
 Version: 1.7.0
-Monthly downloads: 25,492
+Monthly downloads: 26,193
 No known vulnerabilities
-GitHub stars: 200
-Last update: 2024-12-08 11:29:21+00:00
 
+GitHub Metrics:
+Stars: 200
+Forks: 28
+Open Issues: 9
+Last Update: 2024-12-08 11:29:21+00:00
+
+jsonschema:
+-------------------
+Version: 4.23.0
+Monthly downloads: 183,583,243
+No known vulnerabilities
+
+GitHub Metrics:
+Stars: 4,643
+Forks: 582
+Open Issues: 38
+Last Update: 2024-12-09 19:57:02+00:00
+
+aiohttp:
+-------------------
+Version: 3.11.10
+Monthly downloads: 209,496,974
+Vulnerabilities: 22
+- [OSV] GHSA-27mf-ghqm-j3j8
+- [OSV] GHSA-45c4-8wx5-qw6w
+- [OSV] GHSA-5h86-8mv2-jq9f
+- [OSV] GHSA-5m98-qgg9-wh84
+- [OSV] GHSA-7gpw-8wmc-pm8g
+- [OSV] GHSA-8495-4g3g-x7pr
+- [OSV] GHSA-8qpw-xqxj-h4r2
+- [OSV] GHSA-gfw2-4jvh-wgfg
+- [OSV] GHSA-jwhx-xcg6-8xhj
+- [OSV] GHSA-pjjw-qhg8-p2p9
+- [OSV] GHSA-q3qx-c6g2-7pw2
+- [OSV] GHSA-qvrw-v9rv-5rjx
+- [OSV] GHSA-v6wp-4m6f-gcjg
+- [OSV] GHSA-xx9p-xxvh-7g8j
+- [OSV] PYSEC-2021-76
+- [OSV] PYSEC-2023-120
+- [OSV] PYSEC-2023-246
+- [OSV] PYSEC-2023-247
+- [OSV] PYSEC-2023-250
+- [OSV] PYSEC-2023-251
+- [OSV] PYSEC-2024-24
+- [OSV] PYSEC-2024-26
+
+GitHub Metrics:
+Stars: 15,204
+Forks: 2,027
+Open Issues: 249
+Last Update: 2024-12-09 20:12:28+00:00
+
+dataclasses:
+-------------------
+Version: 0.8
+Monthly downloads: 18,805,604
+No known vulnerabilities
+
+GitHub Metrics:
+Stars: 586
+Forks: 53
+Open Issues: 8
+Last Update: 2024-07-11 16:14:35+00:00
 ```
 
 Full report: [bettercheck-yourself.json](bettercheck-yourself.json)

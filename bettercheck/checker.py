@@ -197,33 +197,93 @@ class PackageChecker:
             return None
 
     def _get_download_stats(self):
+        """Get download stats with fallback options"""
         self.logger.info("Retrieving download statistics...")
+        stats = {"last_month": None, "last_week": None}
+
         try:
+            # Try pypistats.org first
             stats_url = f"https://pypistats.org/api/packages/{self.package_name}/recent"
-            response = requests.get(stats_url)
+            response = requests.get(stats_url, timeout=5)
             if response.status_code == 200:
                 data = response.json()
-                return {
-                    "last_month": data["data"]["last_month"],
-                    "last_week": data["data"]["last_week"],
-                }
-        except Exception:
-            return {"last_month": None, "last_week": None}
-        return None
+                stats.update(
+                    {
+                        "last_month": data["data"]["last_month"],
+                        "last_week": data["data"]["last_week"],
+                    }
+                )
+                return stats
+
+            # Fallback to PyPI simple stats
+            simple_url = f"https://pypi.org/pypi/{self.package_name}/json"
+            response = requests.get(simple_url, timeout=5)
+            if response.status_code == 200:
+                data = response.json()
+                if "info" in data and "downloads" in data["info"]:
+                    stats["last_month"] = data["info"]["downloads"].get("last_month")
+                    stats["last_week"] = data["info"]["downloads"].get("last_week")
+
+        except Exception as e:
+            self.logger.error(f"Failed to get download stats: {str(e)}")
+
+        return stats
 
     def _extract_github_url(self, info):
+        """Extract GitHub URL with better fallbacks and validation"""
         self.logger.info("Extracting GitHub URL from package info...")
-        sources = [
-            info.get("project_urls", {}).get("Source"),
-            info.get("project_urls", {}).get("Homepage"),
-            info.get("home_page"),
-            info.get("project_url"),
-        ]
 
-        for url in sources:
-            if url and "github.com" in url.lower():
-                return url.rstrip("/").replace("git+", "").replace(".git", "")
+        def clean_github_url(url):
+            # Remove issue trackers, releases, etc and get main repo URL
+            if not url:
+                return None
+            # Convert URL to main repository URL
+            url = url.lower()
+            url = url.replace("http://", "https://")
+            parts = url.split("github.com/")
+            if len(parts) < 2:
+                return None
+            repo_path = parts[1].split("/")
+            if len(repo_path) < 2:
+                return None
+            return f"https://github.com/{repo_path[0]}/{repo_path[1]}"
+
+        # Check project URLs first
+        if project_urls := info.get("project_urls", {}):
+            for label, url in project_urls.items():
+                if url and "github.com" in url.lower():
+                    if clean_url := clean_github_url(url):
+                        self.logger.info(f"Found GitHub URL in project_urls[{label}]")
+                        return clean_url
+
+        # Check other common fields
+        for field in ["home_page", "package_url", "download_url"]:
+            if url := info.get(field):
+                if "github.com" in url.lower():
+                    if clean_url := clean_github_url(url):
+                        self.logger.info(f"Found GitHub URL in {field}")
+                        return clean_url
+
+        # Check description for GitHub links
+        if description := info.get("description", ""):
+            import re
+
+            if match := re.search(r"https?://github\.com/[\w-]+/[\w-]+", description):
+                if clean_url := clean_github_url(match.group(0)):
+                    self.logger.info("Found GitHub URL in description")
+                    return clean_url
+
+        self.logger.warning("No GitHub URL found")
         return None
+
+    def _normalize_github_url(self, url: str) -> str:
+        """Normalize GitHub URLs to consistent format"""
+        url = url.strip().rstrip("/")
+        url = url.replace("git+", "").replace(".git", "")
+        url = url.replace("git://", "https://")
+        if url.startswith("www."):
+            url = "https://" + url
+        return url
 
     async def _check_cve(self):
         self.logger.info("Checking CVE database...")

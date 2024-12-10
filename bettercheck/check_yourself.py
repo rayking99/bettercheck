@@ -93,8 +93,15 @@ def print_analysis(results: Dict):
             click.echo("No known vulnerabilities")
 
         if data["github"]:
-            click.echo(f"GitHub stars: {data['github']['stars']:,}")
-            click.echo(f"Last update: {data['github']['last_commit']}")
+            click.echo("\nGitHub Metrics:")
+            if data["github"].get("stars") is not None:
+                click.echo(f"Stars: {data['github']['stars']:,}")
+            if data["github"].get("forks") is not None:
+                click.echo(f"Forks: {data['github']['forks']:,}")
+            if data["github"].get("open_issues") is not None:
+                click.echo(f"Open Issues: {data['github']['open_issues']:,}")
+            if data["github"].get("last_commit") is not None:
+                click.echo(f"Last Update: {data['github']['last_commit']}")
 
 
 def save_results(results: Dict):
