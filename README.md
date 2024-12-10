@@ -177,20 +177,33 @@ pip install -e .
 
 ## Usage
 
-Check a single package:
+To get the commands automatically, you can run:
 ```bash
-bettercheck requests
+# View available commands and options
+python -m bettercheck --help  
+python -m bettercheck.check_yourself --help
+
+# Example usage - check a package
+python -m bettercheck requests --json
+python -m bettercheck pandas --report md --with-deps
+python -m bettercheck flask --debug
+
+# Check your own project's dependencies
+python -m bettercheck.check_yourself
+python -m bettercheck.check_yourself --direct-only
 ```
 
-Generate a report:
-```bash
-bettercheck requests --report md
-```
 
-Practice what you preach. 
+Or more easily: 
+
 ```bash
+# View available commands and options
+bettercheck --help  
+bettercheck pandas --report md --with-deps
 bettercheck-yourself
+bettercheck-deps pandas 
 ```
+
 
 ## Features
 

@@ -1,21 +1,28 @@
+import asyncio
+import json
 import os
 import sys
-import json
-import asyncio
 from datetime import datetime
-from typing import List, Dict
+from pathlib import Path
+from typing import Dict, List
+
 import click
+
 from bettercheck.checker import PackageChecker
-from bettercheck.security import validate_package_name, SecurityError, read_file_chunked
+from bettercheck.dep_tree import analyze_deps
+from bettercheck.security import SecurityError, read_file_chunked, validate_package_name
 
 
 def get_dependencies() -> List[str]:
-    """Extract dependencies from Setup.py"""
-    setup_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Setup.py")
+    """Extract dependencies from setup.py"""
+    # Change path to look in project root instead of src directory
+    setup_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "setup.py"
+    )
     try:
         content = read_file_chunked(setup_path)
     except SecurityError as e:
-        click.echo(f"Error reading Setup.py: {str(e)}")
+        click.echo(f"Error reading setup.py: {str(e)}")
         return []
 
     # Extract install_requires list
@@ -32,11 +39,42 @@ def get_dependencies() -> List[str]:
     return deps
 
 
+async def get_all_dependencies() -> List[str]:
+    """Get direct and transitive dependencies from setup.py"""
+    direct_deps = get_dependencies()
+    all_deps = set()
+
+    for dep in direct_deps:
+        try:
+            # Get dependency tree for each direct dependency
+            tree = await analyze_deps(dep, max_depth=5)
+            if tree:
+                # Add the root package
+                all_deps.add(tree["name"])
+
+                # Recursively collect all dependencies
+                def collect_deps(node):
+                    for req in node.get("requires", []):
+                        all_deps.add(req["name"])
+                        collect_deps(req)
+
+                collect_deps(tree)
+        except Exception as e:
+            click.echo(f"Warning: Failed to analyze dependencies for {dep}: {str(e)}")
+            # Still include the direct dependency even if we can't get its tree
+            all_deps.add(dep)
+
+    return list(all_deps)
+
+
 async def analyze_dependencies(dependencies: List[str]) -> Dict:
     """Analyze each dependency using PackageChecker"""
+    # Get all direct and transitive dependencies
+    all_deps = await get_all_dependencies()
+    click.echo(f"\nAnalyzing {len(all_deps)} total dependencies...")
     results = {}
 
-    for dep in dependencies:
+    for dep in all_deps:
         try:
             validate_package_name(dep)
         except SecurityError as e:
@@ -80,10 +118,9 @@ def print_analysis(results: Dict):
 
         if data["pypi"]:
             click.echo(f"Version: {data['pypi']['version']}")
-            if data["pypi"]["downloads"]:
-                click.echo(
-                    f"Monthly downloads: {data['pypi']['downloads']['last_month']:,}"
-                )
+            downloads = data["pypi"].get("downloads")
+            if downloads and downloads.get("last_month"):
+                click.echo(f"Monthly downloads: {downloads['last_month']:,}")
 
         if data["security"]:
             click.echo(f"Vulnerabilities: {len(data['security'])}")
@@ -107,11 +144,12 @@ def print_analysis(results: Dict):
 def save_results(results: Dict):
     """Save analysis results to JSON file"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    report_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reports")
-    os.makedirs(report_dir, exist_ok=True)
+    # Use project root instead of package directory
+    report_dir = Path(__file__).parent.parent.parent / "reports"
+    report_dir.mkdir(exist_ok=True)
 
     filename = f"bettercheck-{timestamp}.json"
-    filepath = os.path.join(report_dir, filename)
+    filepath = report_dir / filename
 
     try:
         with open(filepath, "w", encoding="utf-8") as f:
@@ -125,10 +163,16 @@ def save_results(results: Dict):
 
 
 @click.command()
-def main():
+@click.option("--direct-only", is_flag=True, help="Only analyze direct dependencies")
+def main(direct_only):
     """Analyze all project dependencies for security issues"""
-    deps = get_dependencies()
-    results = asyncio.run(analyze_dependencies(deps))
+    if direct_only:
+        deps = get_dependencies()
+        results = asyncio.run(analyze_dependencies(deps))
+    else:
+        results = asyncio.run(
+            analyze_dependencies([])
+        )  # Empty list since get_all_dependencies will be called
 
     # Always save JSON report and print analysis
     save_results(results)

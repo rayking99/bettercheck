@@ -12,6 +12,7 @@ from bettercheck.security import (
     SecurityError,
     read_file_chunked,
 )
+from bettercheck.dep_tree import analyze_deps
 
 
 @click.command()
@@ -21,12 +22,13 @@ from bettercheck.security import (
 @click.option(
     "--report", type=click.Choice(["txt", "md"]), help="Generate a report file"
 )
-def main(package_name, json, debug, report):
+@click.option("--with-deps", is_flag=True, help="Include dependency analysis")
+def main(package_name, json, debug, report, with_deps):
     """Check Python package information and metrics"""
-    return asyncio.run(_async_main(package_name, json, debug, report))
+    return asyncio.run(_async_main(package_name, json, debug, report, with_deps))
 
 
-async def _async_main(package_name, json, debug, report):
+async def _async_main(package_name, json, debug, report, with_deps):
     try:
         validate_package_name(package_name)
     except SecurityError as e:
@@ -47,21 +49,34 @@ async def _async_main(package_name, json, debug, report):
     pypi_info = checker.check_pypi_info()
     security_info = await checker.check_security()
     github_metrics = None
+    deps_info = None
 
     if pypi_info and pypi_info["github_url"]:
         github_metrics = checker.check_github_metrics(pypi_info["github_url"])
 
+    if with_deps:
+        deps_tree = await analyze_deps(package_name, max_depth=3)
+        if deps_tree:
+            deps_info = await analyze_dependencies(deps_tree)
+
     if report:
-        generate_report(package_name, pypi_info, security_info, github_metrics, report)
+        generate_report(
+            package_name, pypi_info, security_info, github_metrics, deps_info, report
+        )
     elif json:
         click.echo(
-            {"pypi": pypi_info, "security": security_info, "github": github_metrics}
+            {
+                "pypi": pypi_info,
+                "security": security_info,
+                "github": github_metrics,
+                "dependencies": deps_info,
+            }
         )
     else:
-        _print_formatted_results(pypi_info, security_info, github_metrics)
+        _print_formatted_results(pypi_info, security_info, github_metrics, deps_info)
 
 
-def _print_formatted_results(pypi_info, security_info, github_metrics):
+def _print_formatted_results(pypi_info, security_info, github_metrics, deps_info):
     logger = logging.getLogger(__name__)
 
     # Package Information logging
@@ -196,8 +211,31 @@ def _print_formatted_results(pypi_info, security_info, github_metrics):
                             break
                     current_page += 1
 
+    if deps_info:
+        click.echo("\n=== Dependencies Analysis ===")
+        total_deps = len(deps_info)
+        total_vulns = sum(
+            len(dep_data.get("security", [])) for dep_data in deps_info.values()
+        )
+        click.echo(f"\nTotal dependencies: {total_deps}")
+        click.echo(f"Total vulnerabilities in dependencies: {total_vulns}")
 
-def generate_report(package_name, pypi_info, security_info, github_metrics, format):
+        if click.confirm("\nShow dependency details?"):
+            for dep_name, dep_data in deps_info.items():
+                click.echo(f"\n{dep_name}:")
+                if dep_data.get("security"):
+                    click.echo(f"Vulnerabilities: {len(dep_data['security'])}")
+                    for vuln in dep_data["security"]:
+                        click.echo(
+                            f"- [{vuln['source']}] {vuln['vulnerability_id']}: {vuln['advisory']}"
+                        )
+                else:
+                    click.echo("No known vulnerabilities")
+
+
+def generate_report(
+    package_name, pypi_info, security_info, github_metrics, deps_info, format
+):
     """Generate a detailed report in the specified format"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filepath = get_report_path(package_name, timestamp, format)
@@ -268,6 +306,32 @@ def generate_report(package_name, pypi_info, security_info, github_metrics, form
                 content.append(f"- {vuln['vulnerability_id']}: {vuln['advisory']}")
             content.append("")
 
+    if deps_info:
+        content.extend(
+            [
+                (
+                    "\nDependency Analysis"
+                    if format == "txt"
+                    else "## Dependency Analysis"
+                ),
+                f"Total Dependencies: {len(deps_info)}",
+                f"Total Vulnerabilities in Dependencies: {sum(len(dep_data.get('security', [])) for dep_data in deps_info.values())}\n",
+            ]
+        )
+
+        for dep_name, dep_data in deps_info.items():
+            content.extend(
+                [
+                    f"### {dep_name}" if format == "md" else f"\n{dep_name}:",
+                    f"Vulnerabilities: {len(dep_data.get('security', []))}",
+                ]
+            )
+            for vuln in dep_data.get("security", []):
+                content.append(
+                    f"- [{vuln['source']}] {vuln['vulnerability_id']}: {vuln['advisory']}"
+                )
+            content.append("")
+
     # Write content in chunks
     try:
         with open(filepath, "w", encoding="utf-8") as f:
@@ -279,6 +343,32 @@ def generate_report(package_name, pypi_info, security_info, github_metrics, form
         return
 
     click.echo(f"Report generated: {filepath}")
+
+
+async def analyze_dependencies(deps_tree: dict) -> dict:
+    """Analyze all dependencies in the dependency tree"""
+    results = {}
+    seen = set()
+
+    async def analyze_node(node):
+        if node["name"] in seen:
+            return
+        seen.add(node["name"])
+
+        checker = PackageChecker(node["name"])
+        security_info = await checker.check_security()
+
+        if security_info:
+            results[node["name"]] = {
+                "version": node["version"],
+                "security": security_info,
+            }
+
+        for dep in node.get("requires", []):
+            await analyze_node(dep)
+
+    await analyze_node(deps_tree)
+    return results
 
 
 if __name__ == "__main__":

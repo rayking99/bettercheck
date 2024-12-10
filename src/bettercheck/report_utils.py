@@ -6,7 +6,9 @@ from bettercheck.security import validate_safe_path
 
 def get_report_path(package_name: str, timestamp: str, format: str) -> Path:
     """Get a safe path for report files"""
-    report_dir = Path(__file__).parent.parent / "reports"
+    # Use project root instead of package directory
+    project_root = Path(__file__).parent.parent.parent
+    report_dir = project_root / "reports"
     report_dir.mkdir(exist_ok=True)
 
     filename = f"package_report_{package_name}_{timestamp}.{format}"
@@ -15,7 +17,9 @@ def get_report_path(package_name: str, timestamp: str, format: str) -> Path:
 
 def get_log_path(package_name: str, timestamp: str) -> Path:
     """Get a safe path for log files"""
-    log_dir = Path(__file__).parent.parent / "logs"
+    # Use project root instead of package directory
+    project_root = Path(__file__).parent.parent.parent
+    log_dir = project_root / "logs"
     log_dir.mkdir(exist_ok=True)
 
     filename = f"package_check_{package_name}_{timestamp}.log"
