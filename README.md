@@ -205,6 +205,15 @@ bettercheck-deps pandas
 ```
 
 
+### Potential Extensions
+
+`Examples/package_report.py` can create package reports that include studies on dependencies. [requests report](Examples/requests_package_report-recursive.md)
+
+Passing this information through to Claude - we get: 
+
+![Claude's recommendation](assets/ClaudeRecommends.png)
+
+
 ## Features
 
 - Vulnerability scanning via OSV and CVE databases
