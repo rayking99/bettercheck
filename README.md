@@ -188,7 +188,7 @@ python -m bettercheck requests --json
 python -m bettercheck pandas --report md --with-deps
 python -m bettercheck flask --debug
 
-# Check your own project's dependencies
+# Check this project
 python -m bettercheck.check_yourself
 python -m bettercheck.check_yourself --direct-only
 ```
