@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bettercheck"
+version = "0.0.1"
+description = "A CLI tool that helps evaluate Python packages for security concerns"
+readme = "README.md"
+authors = [{ name = "Jason Pickup", email = "therayking99@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+keywords = ["security", "package", "dependency", "check", "vulnerability"]
+dependencies = [
+    "requests",
+    "click",
+    "packaging",
+    "pygithub",
+    "pypistats",
+    "jsonschema",
+    "aiohttp",
+    "dataclasses",
+    "setuptools",
+]
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/rayking99/bettercheck"
+Repository = "https://github.com/rayking99/bettercheck.git"
+
+[project.scripts]
+bettercheck-yourself = "bettercheck.check_yourself:main"
+bettercheck = "bettercheck.cli:main"
+bettercheck-deps = "bettercheck.dep_tree:main"
+bettercheck-scan = "bettercheck.scanner:main"
