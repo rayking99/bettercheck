@@ -42,3 +42,21 @@ bettercheck-yourself = "bettercheck.check_yourself:main"
 bettercheck = "bettercheck.cli:main"
 bettercheck-deps = "bettercheck.dep_tree:main"
 bettercheck-scan = "bettercheck.scanner:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio",
+    "black",
+    "flake8",
+    "twine",
+    "build",
+    "vcrpy"
+]
+
+[tool.pytest.ini_options]
+addopts = "-v --cov=src/bettercheck --cov-report=term-missing"
+testpaths = ["tests"]
+asyncio_mode = "strict"
+pythonpath = "src"
