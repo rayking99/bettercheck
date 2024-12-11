@@ -217,7 +217,7 @@ python -m bettercheck.check_yourself --direct-only
 ```
 
 
-There is also a single file / directory scanner that looks for common vulnerabilities. Obviously there are some ways to scan this code in a sage environment. 
+There is also a single file / directory scanner that looks for common vulnerabilities. Obviously there are some ways to scan this code in a safe environment. 
 
 ```bash
 # Security scan for Python files/directories
