@@ -170,6 +170,9 @@ Full report: [bettercheck-yourself.json](bettercheck-yourself.json)
 
 
 ```bash
+pip install bettercheck 
+
+# or
 git clone https://github.com/rayking99/bettercheck
 cd bettercheck
 pip install -e .
