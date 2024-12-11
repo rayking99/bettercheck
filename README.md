@@ -170,6 +170,9 @@ Full report: [bettercheck-yourself.json](bettercheck-yourself.json)
 
 
 ```bash
+pip install bettercheck 
+
+# or
 git clone https://github.com/rayking99/bettercheck
 cd bettercheck
 pip install -e .
@@ -224,7 +227,33 @@ bettercheck-scan scan-file <file_path> [-o OUTPUT_DIR]
 bettercheck-scan scan-dir <directory>
 ```
 
+## Development
 
+### Installation
+```bash
+git clone https://github.com/rayking99/bettercheck
+cd bettercheck
+pip install -e .
+# or 
+pip install -e ".[dev]"
+```
+
+### Testing
+```bash
+# Run tests with coverage report
+pytest
+
+# Run style checks
+black .
+flake8 .
+```
+
+### Platform Support
+Supported on:
+
+Linux
+macOS
+Windows
 
 
 ### Potential Extensions
@@ -265,4 +294,4 @@ Claude, Gemini, Llama and o1 all made contributions with the scope, code and und
 
 ## TODO
 
-Recursive check to encompass entire supply-chain + visualisations. 
+Recursive check to encompass entire supply-chain (including contributors stats) + visualisations.
