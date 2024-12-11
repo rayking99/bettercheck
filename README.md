@@ -6,6 +6,27 @@ Better than nothing.
 
 A CLI tool that helps evaluate Python packages for security concerns before installing them. Performs checks against multiple vulnerability databases and provides useful metrics about package health.
 
+
+```bash
+# View available commands and options
+bettercheck --help  
+
+# Main security/package analysis command
+bettercheck <package_name> [--json] [--debug] [--report {txt,md}] [--with-deps]
+# For example
+bettercheck pandas --report md --with-deps
+# Also possible - but with mixed results 
+bettercheck package-name --github-url https://github.com/owner/repo
+
+# Check bettercheck project dependencies
+bettercheck-yourself [--direct-only]
+
+# Analyze dependency tree
+bettercheck-deps <package_name>
+bettercheck-deps pandas 
+```
+
+
 ### bettercheck Analysis of bettercheck
 ```sh
 (.venv) % bettercheck-yourself
@@ -168,7 +189,6 @@ Full report: [bettercheck-yourself.json](bettercheck-yourself.json)
 
 ## Installation
 
-
 ```bash
 pip install bettercheck 
 
@@ -197,34 +217,67 @@ python -m bettercheck.check_yourself --direct-only
 ```
 
 
-Or more easily: 
-
-```bash
-# View available commands and options
-bettercheck --help  
-
-# Main security/package analysis command
-bettercheck <package_name> [--json] [--debug] [--report {txt,md}] [--with-deps]
-# For example
-bettercheck pandas --report md --with-deps
-# Also possible - but with mixed results 
-bettercheck package-name --github-url https://github.com/owner/repo
-
-# Check bettercheck project dependencies
-bettercheck-yourself [--direct-only]
-
-# Analyze dependency tree
-bettercheck-deps <package_name>
-bettercheck-deps pandas 
-```
-
-
 There is also a single file / directory scanner that looks for common vulnerabilities. Obviously there are some ways to scan this code in a sage environment. 
 
 ```bash
 # Security scan for Python files/directories
 bettercheck-scan scan-file <file_path> [-o OUTPUT_DIR]
 bettercheck-scan scan-dir <directory>
+```
+
+### Usage Within Python File
+
+#### 1. Simple Package Check
+```python
+from bettercheck.checker import PackageChecker
+import asyncio
+
+async def check_package():
+    checker = PackageChecker("requests")
+    security_info = await checker.check_security()
+    
+    if security_info:
+        print(f"Found {len(security_info)} vulnerabilities")
+        for vuln in security_info:
+            print(f"- {vuln['vulnerability_id']}: {vuln['advisory']}")
+    else:
+        print("No vulnerabilities found")
+
+asyncio.run(check_package())
+```
+
+#### 2. Check Package with Dependencies
+```python
+from bettercheck.dep_tree import analyze_deps
+import asyncio
+
+async def check_with_deps():
+    # Analyze dependencies up to 2 levels deep
+    deps = await analyze_deps("flask", max_depth=2)
+    
+    print(f"Package: {deps['name']} v{deps['version']}")
+    for dep in deps.get('requires', []):
+        print(f"└── {dep['name']} v{dep['version']}")
+
+asyncio.run(check_with_deps())
+```
+
+#### 3. Generate Security Report
+```python
+from bettercheck.package_report import PackageReport
+import asyncio
+
+async def generate_report():
+    report = PackageReport("django")
+    data = await report.generate_single_report()
+    
+    # Save as both JSON and Markdown
+    json_path = report.save_report(data, "json")
+    md_path = report.save_report(data, "md")
+    
+    print(f"Reports saved to: {json_path}, {md_path}")
+
+asyncio.run(generate_report())
 ```
 
 ## Development
