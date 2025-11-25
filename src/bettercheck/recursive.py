@@ -18,7 +18,15 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import click
-import matplotlib.pyplot as plt
+
+try:
+    import matplotlib.pyplot as plt
+    HAS_MATPLOTLIB = True
+except ImportError:
+    HAS_MATPLOTLIB = False
+    plt = None
+
+from github import Github
 
 from bettercheck.checker import PackageChecker
 from bettercheck.dep_tree import analyze_deps
@@ -149,16 +157,23 @@ class RecursiveAnalyzer:
             click.echo(f"    Warning: Error analyzing {package_name}: {e}")
     
     async def _get_contributor_stats(self, github_url: str) -> Optional[ContributorStats]:
-        """Fetch contributor statistics from GitHub."""
+        """
+        Fetch contributor statistics from GitHub.
+        
+        Note: Without authentication, GitHub API has a rate limit of 60 requests/hour.
+        Set GITHUB_TOKEN environment variable for higher limits (5000/hour).
+        """
         try:
-            from github import Github
+            import os
             
             # Extract repo path from URL
             repo_path = github_url.replace("https://github.com/", "").rstrip("/")
             if not repo_path or "/" not in repo_path:
                 return None
             
-            g = Github()
+            # Use token if available for higher rate limits
+            github_token = os.environ.get("GITHUB_TOKEN")
+            g = Github(github_token) if github_token else Github()
             repo = g.get_repo(repo_path)
             
             # Get contributors
@@ -240,6 +255,10 @@ class SupplyChainVisualizer:
     
     def generate_vulnerability_chart(self, output_path: Optional[Path] = None) -> Optional[bytes]:
         """Generate a bar chart showing vulnerabilities per package."""
+        if not HAS_MATPLOTLIB:
+            click.echo("Warning: matplotlib not installed. Install with: pip install matplotlib")
+            return None
+        
         # Filter packages with vulnerabilities
         vuln_packages = {
             name: len(pkg.security_info) 
@@ -284,6 +303,10 @@ class SupplyChainVisualizer:
     
     def generate_contributor_chart(self, output_path: Optional[Path] = None) -> Optional[bytes]:
         """Generate a chart showing top contributors across the supply chain."""
+        if not HAS_MATPLOTLIB:
+            click.echo("Warning: matplotlib not installed. Install with: pip install matplotlib")
+            return None
+        
         # Aggregate contributors
         contributor_counts: Dict[str, int] = defaultdict(int)
         
@@ -330,6 +353,10 @@ class SupplyChainVisualizer:
     
     def generate_depth_distribution_chart(self, output_path: Optional[Path] = None) -> Optional[bytes]:
         """Generate a pie chart showing distribution of dependencies by depth."""
+        if not HAS_MATPLOTLIB:
+            click.echo("Warning: matplotlib not installed. Install with: pip install matplotlib")
+            return None
+        
         depth_counts: Dict[int, int] = defaultdict(int)
         
         for pkg in self.results.values():

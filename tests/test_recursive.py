@@ -8,6 +8,7 @@ from bettercheck.recursive import (
     RecursiveAnalyzer,
     SupplyChainVisualizer,
     generate_report,
+    HAS_MATPLOTLIB,
 )
 
 
@@ -114,6 +115,7 @@ class TestSupplyChainVisualizer:
         assert "1.0.0" in tree
         assert "2.0.0" in tree
     
+    @pytest.mark.skipif(not HAS_MATPLOTLIB, reason="matplotlib not installed")
     def test_generate_vulnerability_chart_returns_bytes(self, sample_results, sample_graph):
         visualizer = SupplyChainVisualizer(sample_results, sample_graph)
         result = visualizer.generate_vulnerability_chart()
@@ -122,6 +124,7 @@ class TestSupplyChainVisualizer:
         # PNG files start with specific magic bytes
         assert result[:8] == b'\x89PNG\r\n\x1a\n'
     
+    @pytest.mark.skipif(not HAS_MATPLOTLIB, reason="matplotlib not installed")
     def test_generate_depth_distribution_chart(self, sample_results, sample_graph):
         visualizer = SupplyChainVisualizer(sample_results, sample_graph)
         result = visualizer.generate_depth_distribution_chart()
