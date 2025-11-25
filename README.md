@@ -4,10 +4,17 @@ Better than nothing.
 
 ## What is it?
 
-A CLI tool that helps evaluate Python packages for security concerns before installing them. Performs checks against multiple vulnerability databases and provides useful metrics about package health.
+A CLI tool that helps evaluate Python packages for security concerns before installing them. Performs checks against multiple vulnerability databases and provides useful metrics about package health, including **recursive supply-chain analysis** with contributor statistics and visualizations.
 
+## Quick Start
 
 ```bash
+# Install with UV (recommended)
+uv add bettercheck
+
+# Or with pip
+pip install bettercheck
+
 # View available commands and options
 bettercheck --help  
 
@@ -24,6 +31,111 @@ bettercheck-yourself [--direct-only]
 # Analyze dependency tree
 bettercheck-deps <package_name>
 bettercheck-deps pandas 
+
+# NEW: Recursive supply-chain analysis with visualizations
+bettercheck-recursive <package_name> [--max-depth 3] [--format md] [--no-contributors]
+bettercheck-recursive flask --max-depth 2 --format md
+```
+
+## New: Recursive Supply-Chain Analysis
+
+The `bettercheck-recursive` command provides comprehensive analysis of your entire dependency tree:
+
+### Features
+
+- 🔍 **Deep Dependency Analysis**: Recursively analyze all packages in the supply chain
+- 👥 **Contributor Statistics**: Track who maintains your dependencies
+- 📊 **Visualizations**: Generate charts showing vulnerabilities, contributors, and dependency distribution
+- 📝 **Comprehensive Reports**: Export as Markdown or JSON
+
+### Example Usage
+
+```bash
+# Full recursive analysis with all features
+bettercheck-recursive flask --max-depth 3 --format md
+
+# JSON output for programmatic processing
+bettercheck-recursive django --format json --output ./reports
+
+# Skip contributor stats for faster analysis
+bettercheck-recursive requests --no-contributors
+```
+
+### Sample Output
+
+```
+🔍 Starting recursive supply chain analysis for flask
+   Max depth: 3
+   Include contributors: True
+
+  Analyzing flask (depth 0)...
+  Analyzing werkzeug (depth 1)...
+  Analyzing markupsafe (depth 2)...
+  Analyzing jinja2 (depth 1)...
+  Analyzing click (depth 1)...
+  Analyzing itsdangerous (depth 1)...
+  Analyzing blinker (depth 1)...
+
+📊 Analysis Complete!
+   Packages analyzed: 7
+   Total vulnerabilities: 12
+
+📄 Report saved to: reports/supply_chain_flask_20241210_123456.md
+```
+
+### Generated Report Contents
+
+The generated report includes:
+
+1. **Summary Statistics**
+   - Total packages analyzed
+   - Total vulnerabilities found
+   - Packages with vulnerabilities
+   - Total contributors across supply chain
+
+2. **Dependency Tree (ASCII visualization)**
+   ```
+   └── flask (2.3.0)
+       ├── werkzeug (2.3.6) ⚠️ 2 vulns
+       │   └── markupsafe (2.1.3)
+       ├── jinja2 (3.1.2)
+       │   └── markupsafe (2.1.3)
+       ├── click (8.1.7)
+       ├── itsdangerous (2.1.2)
+       └── blinker (1.6.2)
+   ```
+
+3. **Visualizations (PNG charts)**
+   - Vulnerabilities by package (bar chart)
+   - Dependency distribution by depth (pie chart)  
+   - Top contributors across supply chain (bar chart)
+
+4. **Vulnerability Details**
+   - CVE/GHSA identifiers
+   - Severity levels
+   - Advisory descriptions
+
+5. **Contributor Statistics**
+   - Total contributors per package
+   - Top contributors with contribution counts
+
+### Python API
+
+```python
+from bettercheck.recursive import run_recursive_analysis
+import asyncio
+
+async def analyze():
+    report_path = await run_recursive_analysis(
+        package_name="flask",
+        max_depth=3,
+        include_contributors=True,
+        output_format="md",
+        output_dir="./reports"
+    )
+    print(f"Report generated: {report_path}")
+
+asyncio.run(analyze())
 ```
 
 
@@ -189,10 +301,26 @@ Full report: [bettercheck-yourself.json](bettercheck-yourself.json)
 
 ## Installation
 
+### Using UV (Recommended)
+
+[UV](https://docs.astral.sh/uv/) is a fast Python package manager. Install it first, then:
+
+```bash
+# Clone and install with UV
+git clone https://github.com/rayking99/bettercheck
+cd bettercheck
+uv sync
+
+# Or install from PyPI
+uv add bettercheck
+```
+
+### Using pip
+
 ```bash
 pip install bettercheck 
 
-# or
+# or for development
 git clone https://github.com/rayking99/bettercheck
 cd bettercheck
 pip install -e .
@@ -205,6 +333,7 @@ To get the commands automatically, you can run:
 # View available commands and options
 python -m bettercheck --help  
 python -m bettercheck.check_yourself --help
+python -m bettercheck.recursive --help
 
 # Example usage - check a package
 python -m bettercheck requests --json
@@ -214,6 +343,9 @@ python -m bettercheck flask --debug
 # Check this project
 python -m bettercheck.check_yourself
 python -m bettercheck.check_yourself --direct-only
+
+# Recursive supply-chain analysis
+python -m bettercheck.recursive flask --max-depth 2
 ```
 
 
@@ -280,25 +412,92 @@ async def generate_report():
 asyncio.run(generate_report())
 ```
 
+#### 4. Recursive Supply-Chain Analysis
+```python
+from bettercheck.recursive import run_recursive_analysis, RecursiveAnalyzer
+import asyncio
+
+# Quick analysis
+async def quick_analysis():
+    report_path = await run_recursive_analysis(
+        package_name="requests",
+        max_depth=2,
+        include_contributors=True,
+        output_format="md"
+    )
+    print(f"Report saved to: {report_path}")
+
+asyncio.run(quick_analysis())
+
+# Or use the analyzer directly for more control
+async def detailed_analysis():
+    analyzer = RecursiveAnalyzer(max_depth=3, include_contributors=True)
+    results = await analyzer.analyze("flask")
+    
+    # Access results programmatically
+    for pkg_name, pkg_data in results.items():
+        print(f"{pkg_name}: {len(pkg_data.security_info)} vulnerabilities")
+        if pkg_data.contributor_stats:
+            print(f"  Contributors: {pkg_data.contributor_stats.total_contributors}")
+
+asyncio.run(detailed_analysis())
+```
+
+#### 5. Generate Visualizations
+```python
+from bettercheck.recursive import RecursiveAnalyzer, SupplyChainVisualizer
+from pathlib import Path
+import asyncio
+
+async def generate_charts():
+    # Analyze package
+    analyzer = RecursiveAnalyzer(max_depth=2)
+    results = await analyzer.analyze("django")
+    
+    # Create visualizer
+    visualizer = SupplyChainVisualizer(results, analyzer.dependency_graph)
+    
+    # Generate ASCII tree
+    print(visualizer.generate_dependency_tree_ascii("django"))
+    
+    # Generate charts
+    output_dir = Path("charts")
+    output_dir.mkdir(exist_ok=True)
+    
+    visualizer.generate_vulnerability_chart(output_dir / "vulns.png")
+    visualizer.generate_contributor_chart(output_dir / "contributors.png")
+    visualizer.generate_depth_distribution_chart(output_dir / "depth.png")
+
+asyncio.run(generate_charts())
+```
+
 ## Development
 
-### Installation
+### Installation with UV (Recommended)
 ```bash
 git clone https://github.com/rayking99/bettercheck
 cd bettercheck
-pip install -e .
-# or 
+uv sync --all-extras
+```
+
+### Installation with pip
+```bash
+git clone https://github.com/rayking99/bettercheck
+cd bettercheck
 pip install -e ".[dev]"
 ```
 
 ### Testing
 ```bash
-# Run tests with coverage report
+# Run tests with UV
+uv run pytest
+
+# Or with pytest directly
 pytest
 
 # Run style checks
-black .
-flake8 .
+uv run ruff check .
+uv run black --check .
 ```
 
 ### Platform Support
@@ -320,12 +519,15 @@ Passing this information through to Claude - we get:
 
 ## Features
 
-- Vulnerability scanning via OSV and CVE databases
-- Package download statistics
-- GitHub repository metrics
-- Report generation (markdown/text)
-- Detailed vulnerability descriptions
-- Project dependency analysis
+- 🔐 **Vulnerability Scanning**: Check packages against OSV and CVE databases
+- 📊 **Package Statistics**: View download stats and package health metrics
+- 🐙 **GitHub Metrics**: Stars, forks, issues, and activity data
+- 📝 **Report Generation**: Export findings as Markdown, JSON, or text
+- 🔍 **Detailed Advisories**: Full vulnerability descriptions and remediation advice
+- 🌳 **Dependency Analysis**: Map out your dependency tree
+- 🔄 **Recursive Supply-Chain Analysis**: Analyze your entire dependency graph
+- 👥 **Contributor Statistics**: Track who maintains your dependencies
+- 📈 **Visualizations**: Generate charts for vulnerabilities, contributors, and dependency depth
 
 ## License
 
@@ -333,7 +535,10 @@ MIT
 
 ## Roadmap
 
-- Various tools to help understand open-source software development and dependencies. 
+- ~~Recursive check to encompass entire supply-chain (including contributors stats) + visualisations~~ ✅ Completed!
+- Various tools to help understand open-source software development and dependencies
+- Integration with additional vulnerability databases
+- Automated security policy recommendations
 
 ## Disclaimer
 
@@ -343,8 +548,4 @@ This is only a research tool.
 
 This idea started with the video: Russ Cox at ACM SCORED: Open Source Supply Chain Security at Google [YouTube Video](https://www.youtube.com/watch?v=6H-V-0oQvCA)
 
-Claude, Gemini, Llama and o1 all made contributions with the scope, code and understanding. 
-
-## TODO
-
-Recursive check to encompass entire supply-chain (including contributors stats) + visualisations.
+Claude, Gemini, Llama and o1 all made contributions with the scope, code and understanding.

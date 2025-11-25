@@ -12,3 +12,11 @@ wip/
 dist/
 build/
 *.egg-info/
+
+# UV specific
+.python-version
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
