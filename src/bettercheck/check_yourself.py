@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 import sys
+import tomllib
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
@@ -14,33 +15,37 @@ from bettercheck.security import SecurityError, read_file_chunked, validate_pack
 
 
 def get_dependencies() -> List[str]:
-    """Extract dependencies from setup.py"""
-    # Change path to look in project root instead of src directory
-    setup_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "setup.py"
-    )
+    """Extract dependencies from pyproject.toml"""
+    # Look for pyproject.toml in project root
+    project_root = Path(__file__).parent.parent.parent
+    pyproject_path = project_root / "pyproject.toml"
+    
     try:
-        content = read_file_chunked(setup_path)
-    except SecurityError as e:
-        click.echo(f"Error reading setup.py: {str(e)}")
+        with open(pyproject_path, "rb") as f:
+            data = tomllib.load(f)
+        
+        # Extract dependencies from pyproject.toml
+        deps = data.get("project", {}).get("dependencies", [])
+        
+        # Clean up dependency specifications (remove version constraints)
+        clean_deps = []
+        for dep in deps:
+            # Extract package name (before any version specifier)
+            name = dep.split(">=")[0].split("<=")[0].split("==")[0].split("<")[0].split(">")[0].split("[")[0].strip()
+            if name:
+                clean_deps.append(name)
+        
+        return clean_deps
+    except FileNotFoundError:
+        click.echo(f"Error: pyproject.toml not found at {pyproject_path}")
         return []
-
-    # Extract install_requires list
-    start = content.find("install_requires=[") + len("install_requires=[")
-    end = content.find("]", start)
-    deps_block = content[start:end]
-
-    # Parse dependencies
-    deps = [
-        dep.strip().strip('"').strip("'")
-        for dep in deps_block.split(",")
-        if dep.strip()
-    ]
-    return deps
+    except Exception as e:
+        click.echo(f"Error reading pyproject.toml: {str(e)}")
+        return []
 
 
 async def get_all_dependencies() -> List[str]:
-    """Get direct and transitive dependencies from setup.py"""
+    """Get direct and transitive dependencies from pyproject.toml"""
     direct_deps = get_dependencies()
     all_deps = set()
 

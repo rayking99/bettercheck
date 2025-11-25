@@ -12,3 +12,6 @@ wip/
 dist/
 build/
 *.egg-info/
+
+# UV specific
+.python-version
